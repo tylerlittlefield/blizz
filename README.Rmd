@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
 [![Travis build status](https://travis-ci.org/tyluRp/blizz.svg?branch=master)](https://travis-ci.org/tyluRp/blizz)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/tyluRp/blizz?branch=master&svg=true)](https://ci.appveyor.com/project/tyluRp/blizz)
 [![Codecov test coverage](https://codecov.io/gh/tyluRp/blizz/branch/master/graph/badge.svg)](https://codecov.io/gh/tyluRp/blizz?branch=master)
-[![LICENSE](https://img.shields.io/github/license/tylurp/blizz.svg)](https://github.com/tyluRp/blizz)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
@@ -32,9 +31,25 @@ You can install from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("tyluRp/blizz")
 ```
+
+## Additional Setup
+
+Installing the package alone isn't enough to get started. You will need to create a developer account at Blizzards new [dev portal](https://develop.battle.net/). Once you've created an account, a client needs to be made. Creating a client will produce a _Client ID_ and _Client Secret_. With these credentials you can simply run:
+
+```r
+blizz_cred("your_client_id", "your_client_secret")
+```
+
+This will do a couple things:
+
+1. Store the Client ID and Secret in the `.Renviron` file. If you don't have one, it'll create one for you.
+2. Run a system command to produce an _auth code_ which is then stored in `.Renviron`.
+
+After this, you're all set. If you want to avoid using `blizz_cred()`, you can do all of this yourself by following the [docs](https://develop.battle.net/documentation/guides/getting-started).
+
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Use the `blizz()` function to access all API endpoints:
 
 ```{r example, message=FALSE}
 library(blizz)

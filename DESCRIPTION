@@ -16,7 +16,7 @@ LazyData: true
 URL: https://github.com/tyluRp/blizz
 BugReports: https://github.com/tyluRp/blizz/issues
 Depends: 
-    R (>= 2.10)
+    R (>= 3.2)
 Imports: 
     jsonlite,
     glue,
