@@ -15,7 +15,7 @@
 #' @param overwrite If this is set to TRUE, it will overwrite an existing Blizzard credentials that you already have in your \code{.Renviron} file.
 #' @importFrom utils write.table read.table
 #' @export
-blizz_cred <- function(id, secret, overwrite = FALSE, install = TRUE) {
+blizz_creds <- function(id, secret, overwrite = FALSE, install = TRUE) {
   if (install) {
     home <- Sys.getenv("HOME")
     renv <- file.path(home, ".Renviron")

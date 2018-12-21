@@ -16,7 +16,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 <!-- badges: end -->
 
 Minimalistic client to access [Blizzards
-API](https://develop.battle.net/)
+API](https://develop.battle.net/).
 
 ## Installation
 
@@ -36,7 +36,7 @@ client needs to be made. Creating a client will produce a *Client ID*
 and *Client Secret*. With these credentials you can simply run:
 
 ``` r
-blizz_cred("your_client_id", "your_client_secret")
+blizz_creds("your_client_id", "your_client_secret")
 ```
 
 This will do a couple things:
@@ -46,7 +46,7 @@ This will do a couple things:
 2.  Run a system command to produce an *auth code* which is then stored
     in `.Renviron`.
 
-After this, you’re all set. If you want to avoid using `blizz_cred()`,
+After this, you’re all set. If you want to avoid using `blizz_creds()`,
 you can do all of this yourself by following the
 [docs](https://develop.battle.net/documentation/guides/getting-started).
 
@@ -57,7 +57,7 @@ Use the `blizz()` function to access all API endpoints:
 ``` r
 library(blizz)
 
-act1 <- blizz("d3/data/act/1")
+act1 <- blizz("/d3/data/act/1")
 
 act1[["quests"]]
 #>        id                    name                    slug

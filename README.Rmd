@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-Minimalistic client to access [Blizzards API](https://develop.battle.net/)
+Minimalistic client to access [Blizzards API](https://develop.battle.net/).
 
 ## Installation
 
@@ -37,7 +37,7 @@ devtools::install_github("tyluRp/blizz")
 Installing the package alone isn't enough to get started. You will need to create a developer account at Blizzards new [dev portal](https://develop.battle.net/). Once you've created an account, a client needs to be made. Creating a client will produce a _Client ID_ and _Client Secret_. With these credentials you can simply run:
 
 ```r
-blizz_cred("your_client_id", "your_client_secret")
+blizz_creds("your_client_id", "your_client_secret")
 ```
 
 This will do a couple things:
@@ -45,7 +45,7 @@ This will do a couple things:
 1. Store the Client ID and Secret in the `.Renviron` file. If you don't have one, it'll create one for you.
 2. Run a system command to produce an _auth code_ which is then stored in `.Renviron`.
 
-After this, you're all set. If you want to avoid using `blizz_cred()`, you can do all of this yourself by following the [docs](https://develop.battle.net/documentation/guides/getting-started).
+After this, you're all set. If you want to avoid using `blizz_creds()`, you can do all of this yourself by following the [docs](https://develop.battle.net/documentation/guides/getting-started).
 
 ## Example
 
@@ -54,7 +54,7 @@ Use the `blizz()` function to access all API endpoints:
 ```{r example, message=FALSE}
 library(blizz)
 
-act1 <- blizz("d3/data/act/1")
+act1 <- blizz("/d3/data/act/1")
 
 act1[["quests"]]
 ```
