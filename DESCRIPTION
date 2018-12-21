@@ -1,14 +1,27 @@
 Package: blizz
-Title: What the Package Does (One Line, Title Case)
+Title: R interface to Blizzards API
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Tyler",
            family = "Littlefield",
            role = c("aut", "cre"),
            email = "tylurp1@gmail.com")
-Description: What the package does (one paragraph).
+Description: The goal of blizz is to give R users an interface to explore
+    Blizzards developer API. Generally speaking, R is a great tool for 
+    interactive work and this package is meant to make Blizzard data exploration
+    easy and enjoyable.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/tyluRp/blizz
 BugReports: https://github.com/tyluRp/blizz/issues
+Depends: 
+    R (>= 2.10)
+Imports: 
+    jsonlite,
+    glue,
+    utils
+RoxygenNote: 6.1.1
+Suggests: 
+    covr,
+    testthat

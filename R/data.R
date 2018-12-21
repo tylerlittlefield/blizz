@@ -1,0 +1,20 @@
+#' Blizzards API Regions.
+#'
+#' A dataset containing all available regions, hosts, and locales. API data is
+#' limited to specific regions. For example, US APIs accessed through
+#' us.battle.net only contain data from US battlegroups and realms. Locale
+#' support is limited to locations supported on Blizzard community game sites.
+#' Game information is different from region to region. For example, a user
+#' that has both US and EU WoW accounts has different characters, achievements,
+#' and other information in each region. Likewise, a D3 user who has a single
+#' license for D3 on their account has a different character list for each
+#' region in which the game operates.
+#'
+#' @format A data frame with 13 rows and 3 variables:
+#' \describe{
+#'   \item{region}{The region: us, eu, kr, tw, or cn}
+#'   \item{host}{The host for example, https://us.api.blizzard.com/}
+#'   \item{locale}{The localization, see the \code{regions} dataset}
+#' }
+#' @source \url{https://develop.battle.net/documentation/guides/regionality-partitions-and-localization}
+"regions"

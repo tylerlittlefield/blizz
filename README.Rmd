@@ -1,0 +1,46 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# blizz
+
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/tyluRp/blizz.svg?branch=master)](https://travis-ci.org/tyluRp/blizz)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/tyluRp/blizz?branch=master&svg=true)](https://ci.appveyor.com/project/tyluRp/blizz)
+[![Codecov test coverage](https://codecov.io/gh/tyluRp/blizz/branch/master/graph/badge.svg)](https://codecov.io/gh/tyluRp/blizz?branch=master)
+[![LICENSE](https://img.shields.io/github/license/tylurp/blizz.svg)](https://github.com/tyluRp/blizz)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+<!-- badges: end -->
+
+Minimalistic client to access [Blizzards API](https://develop.battle.net/)
+
+## Installation
+
+You can install from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("tyluRp/blizz")
+```
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example, message=FALSE}
+library(blizz)
+
+act1 <- blizz("d3/data/act/1")
+
+act1[["quests"]]
+```
+
