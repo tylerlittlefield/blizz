@@ -65,19 +65,19 @@ blizz("/sc2/ladder/grandmaster/1") %>%
   unnest() %>% 
   as_tibble() %>% 
   clean_names("snake") %>% 
-  select(display_name, clan_tag, favorite_race, wins, losses, points)
-#> # A tibble: 194 x 6
-#>    display_name clan_tag favorite_race  wins losses points
-#>    <chr>        <chr>    <chr>         <int>  <int>  <int>
-#>  1 DanielaAzu   <NA>     terran           43     10    945
-#>  2 Chammy       Scyth    zerg             66     23   1714
-#>  3 Astrea       PsiX     protoss          59     24   1612
-#>  4 scarlett     N0SCAM   protoss          59     14   1494
-#>  5 Barrow       BearMe   terran          116     11   1542
-#>  6 LiquidTLO    <NA>     zerg             38     13    887
-#>  7 NoWCSForU    N0SCAM   protoss         180     40   2008
-#>  8 puCK         ROOT     protoss         233    134   2050
-#>  9 JimRising    <NA>     zerg            295    166   1923
-#> 10 Connor       <NA>     zerg             13      6    513
-#> # ... with 184 more rows
+  select(display_name, clan_tag, favorite_race, mmr, wins, losses, points)
+#> # A tibble: 179 x 7
+#>    display_name clan_tag favorite_race   mmr  wins losses points
+#>    <chr>        <chr>    <chr>         <int> <int>  <int>  <int>
+#>  1 DanielaAzu   <NA>     terran         6744    43     10    945
+#>  2 Chammy       Scyth    zerg           6476    66     23   1714
+#>  3 Astrea       PsiX     protoss        6410    59     24   1612
+#>  4 scarlett     N0SCAM   protoss        6389    59     14   1494
+#>  5 LiquidTLO    <NA>     zerg           6318    38     13    887
+#>  6 NoWCSForU    N0SCAM   protoss        6288   180     40   2008
+#>  7 puCK         ROOT     protoss        6259   233    134   2050
+#>  8 JimRising    <NA>     zerg           6114   295    166   1923
+#>  9 Connor       <NA>     zerg           6070    13      6    513
+#> 10 Messi        <NA>     zerg           6035   103     20   1647
+#> # ... with 169 more rows
 ```

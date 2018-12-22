@@ -62,7 +62,7 @@ blizz("/sc2/ladder/grandmaster/1") %>%
   unnest() %>% 
   as_tibble() %>% 
   clean_names("snake") %>% 
-  select(display_name, clan_tag, favorite_race, wins, losses, points)
+  select(display_name, clan_tag, favorite_race, mmr, wins, losses, points)
 ```
 
 
