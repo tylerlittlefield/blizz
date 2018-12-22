@@ -4,7 +4,7 @@
 \alias{blizz}
 \title{Extract Data from Blizzards API}
 \usage{
-blizz(endpoint, region = "us", locale = NULL, json = FALSE)
+blizz(endpoint, region = "us", json = FALSE)
 }
 \arguments{
 \item{endpoint}{An endpoint provided by Blizzards API documentation}
@@ -12,10 +12,6 @@ blizz(endpoint, region = "us", locale = NULL, json = FALSE)
 \item{region}{API data is limited to specific regions. For example, US APIs
 accessed through us.battle.net only contain data from US battlegroups and
 realms. See the dataset \code{regions} for more info.}
-
-\item{locale}{Locale support is limited to locations supported on Blizzard
-community game sites. Defaults to NULL and selects the first row from the
-\code{regions} dataset.}
 
 \item{json}{Logical TRUE/FALSE to return a JSON object or a R object,
 defaults to R.}

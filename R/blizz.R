@@ -9,26 +9,22 @@
 #' @param region API data is limited to specific regions. For example, US APIs
 #' accessed through us.battle.net only contain data from US battlegroups and
 #' realms. See the dataset \code{regions} for more info.
-#' @param locale Locale support is limited to locations supported on Blizzard
-#' community game sites. Defaults to NULL and selects the first row from the
-#' \code{regions} dataset.
 #' @param json Logical TRUE/FALSE to return a JSON object or a R object,
 #' defaults to R.
 #' @export
-blizz <- function(endpoint, region = "us", locale = NULL, json = FALSE) {
+blizz <- function(endpoint, region = "us", json = FALSE) {
 
   # Fetch users auth_token
   auth_token <- fetch_creds()[["token"]]
 
   # Fetch user region
-  region <- fetch_region(region, locale)
+  region <- fetch_region(region)
 
   # Declare the components needs for the request
   blizz_host <- region[["host"]]
-  blizz_locale <- glue::glue("locale=", region[["locale"]])
   token <- "access_token={auth_token}"
 
-  request <- glue::glue(blizz_host, endpoint, "?", blizz_locale, "&", token)
+  request <- glue::glue(blizz_host, endpoint, token)
 
   message("Attempting to pull data from the following request:\n", request, "\n")
 

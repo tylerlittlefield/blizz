@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  message = FALSE
 )
 ```
 # blizz
@@ -51,18 +52,24 @@ After this, you're all set. If you want to avoid using `blizz_creds()`, you can 
 
 Use the `blizz()` function to access all API endpoints:
 
-```{r example, message=FALSE}
+```{r example1}
 library(blizz)
 library(tidyverse)
 library(janitor)
 
 # Here's one example of extracting the StarCraft II grandmaster ladder
-blizz("/sc2/ladder/grandmaster/1") %>% 
+blizz("/sc2/ladder/grandmaster/1?") %>% 
   .[["ladderTeams"]] %>% 
   unnest() %>% 
   as_tibble() %>% 
   clean_names("snake") %>% 
   select(display_name, clan_tag, favorite_race, mmr, wins, losses, points)
+```
+
+When making a request you pretty much need to copy and paste everything in-between the request URL and the access token. In the example above, we needed `/sc2/ladder/grandmaster/1?`. Thanks to the [`jsonlite`](https://github.com/jeroen/jsonlite) package, we can also print the results as JSON:
+
+```{r example2}
+blizz("/d3/data/act/1?locale=en_US&", json = TRUE)
 ```
 
 
