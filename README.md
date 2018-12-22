@@ -56,19 +56,28 @@ Use the `blizz()` function to access all API endpoints:
 
 ``` r
 library(blizz)
+library(tidyverse)
+library(janitor)
 
-act1 <- blizz("/d3/data/act/1")
-
-act1[["quests"]]
-#>        id                    name                    slug
-#> 1   87700         The Fallen Star         the-fallen-star
-#> 2   72095      The Legacy of Cain      the-legacy-of-cain
-#> 3   72221       A Shattered Crown       a-shattered-crown
-#> 4   72061 Reign of the Black King reign-of-the-black-king
-#> 5  117779   Sword of the Stranger   sword-of-the-stranger
-#> 6   72738        The Broken Blade        the-broken-blade
-#> 7   73236     The Doom in Wortham     the-doom-in-wortham
-#> 8   72546      Trailing the Coven      trailing-the-coven
-#> 9   72801    The Imprisoned Angel    the-imprisoned-angel
-#> 10 136656  Return to New Tristram  return-to-new-tristram
+# Here's one example of extracting the StarCraft II grandmaster ladder
+blizz("/sc2/ladder/grandmaster/1") %>% 
+  enframe() %>% 
+  unnest() %>% 
+  unnest() %>% 
+  clean_names("snake") %>% 
+  select(display_name, clan_tag, favorite_race, wins, losses, points)
+#> # A tibble: 194 x 6
+#>    display_name clan_tag favorite_race  wins losses points
+#>    <chr>        <chr>    <chr>         <int>  <int>  <int>
+#>  1 DanielaAzu   <NA>     terran           43     10    945
+#>  2 Chammy       Scyth    zerg             66     23   1714
+#>  3 Astrea       PsiX     protoss          59     24   1612
+#>  4 scarlett     N0SCAM   protoss          59     14   1494
+#>  5 Barrow       BearMe   terran          116     11   1542
+#>  6 LiquidTLO    <NA>     zerg             38     13    887
+#>  7 NoWCSForU    N0SCAM   protoss         180     40   2008
+#>  8 puCK         ROOT     protoss         232    134   2046
+#>  9 JimRising    <NA>     zerg            295    166   1923
+#> 10 Connor       <NA>     zerg             13      6    513
+#> # ... with 184 more rows
 ```

@@ -53,9 +53,16 @@ Use the `blizz()` function to access all API endpoints:
 
 ```{r example, message=FALSE}
 library(blizz)
+library(tidyverse)
+library(janitor)
 
-act1 <- blizz("/d3/data/act/1")
-
-act1[["quests"]]
+# Here's one example of extracting the StarCraft II grandmaster ladder
+blizz("/sc2/ladder/grandmaster/1") %>% 
+  enframe() %>% 
+  unnest() %>% 
+  unnest() %>% 
+  clean_names("snake") %>% 
+  select(display_name, clan_tag, favorite_race, wins, losses, points)
 ```
+
 
