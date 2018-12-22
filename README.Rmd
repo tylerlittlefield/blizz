@@ -66,7 +66,9 @@ blizz("/sc2/ladder/grandmaster/1?") %>%
   select(display_name, clan_tag, favorite_race, mmr, wins, losses, points)
 ```
 
-When making a request you pretty much need to copy and paste everything in-between the request URL and the access token. In the example above, we needed `/sc2/ladder/grandmaster/1?`. Thanks to the [`jsonlite`](https://github.com/jeroen/jsonlite) package, we can also print the results as JSON:
+When making a request you pretty much need to copy and paste everything in-between the request URL and the access token. In the example above, we needed `/sc2/ladder/grandmaster/1?`. 
+
+Additionally, we can print the response as JSON thanks to the [`jsonlite`](https://github.com/jeroen/jsonlite) package:
 
 ```{r example2}
 blizz("/d3/data/act/1?locale=en_US&", json = TRUE)

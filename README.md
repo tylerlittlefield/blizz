@@ -84,9 +84,10 @@ blizz("/sc2/ladder/grandmaster/1?") %>%
 
 When making a request you pretty much need to copy and paste everything
 in-between the request URL and the access token. In the example above,
-we needed `/sc2/ladder/grandmaster/1?`. Thanks to the
-[`jsonlite`](https://github.com/jeroen/jsonlite) package, we can also
-print the results as JSON:
+we needed `/sc2/ladder/grandmaster/1?`.
+
+Additionally, we can print the response as JSON thanks to the
+[`jsonlite`](https://github.com/jeroen/jsonlite) package:
 
 ``` r
 blizz("/d3/data/act/1?locale=en_US&", json = TRUE)
