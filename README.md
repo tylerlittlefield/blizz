@@ -61,9 +61,9 @@ library(janitor)
 
 # Here's one example of extracting the StarCraft II grandmaster ladder
 blizz("/sc2/ladder/grandmaster/1") %>% 
-  enframe() %>% 
+  .[["ladderTeams"]] %>% 
   unnest() %>% 
-  unnest() %>% 
+  as_tibble() %>% 
   clean_names("snake") %>% 
   select(display_name, clan_tag, favorite_race, wins, losses, points)
 #> # A tibble: 194 x 6
@@ -76,7 +76,7 @@ blizz("/sc2/ladder/grandmaster/1") %>%
 #>  5 Barrow       BearMe   terran          116     11   1542
 #>  6 LiquidTLO    <NA>     zerg             38     13    887
 #>  7 NoWCSForU    N0SCAM   protoss         180     40   2008
-#>  8 puCK         ROOT     protoss         232    134   2046
+#>  8 puCK         ROOT     protoss         233    134   2050
 #>  9 JimRising    <NA>     zerg            295    166   1923
 #> 10 Connor       <NA>     zerg             13      6    513
 #> # ... with 184 more rows
