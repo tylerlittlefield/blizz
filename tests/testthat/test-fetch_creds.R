@@ -12,4 +12,5 @@ test_that("fetch_creds works", {
 
   # Expect an error when unneeded argument is given
   expect_error(fetch_creds("no args allowed"))
+
 })

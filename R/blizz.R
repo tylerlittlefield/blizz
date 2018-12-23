@@ -25,8 +25,9 @@ blizz <- function(endpoint, region = "us", json = FALSE) {
   token <- "access_token={auth_token}"
 
   request <- glue::glue(blizz_host, endpoint, token)
+  request_censored <- glue::glue(blizz_host, endpoint, "access_token=[*]")
 
-  message("Attempting to pull data from the following request:\n", request, "\n")
+  message("Attempting to pull data from:\n", request_censored, "\n")
 
   if(json) {
     jsonlite::toJSON(jsonlite::fromJSON(request), pretty = TRUE)
