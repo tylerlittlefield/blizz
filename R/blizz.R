@@ -30,9 +30,18 @@ blizz <- function(endpoint, region = "us", json = FALSE) {
   message("Attempting to pull data from:\n", request_censored, "\n")
 
   if(json) {
-    jsonlite::toJSON(jsonlite::fromJSON(request), pretty = TRUE)
+    t <- try(jsonlite::toJSON(jsonlite::fromJSON(request), pretty = TRUE), silent = TRUE)
+    if(inherits(t, "try-error")) {
+      stop("Request failed. Likely due to an improper endpoint or stale authentication token.", call. = FALSE)
+    } else {
+      jsonlite::toJSON(jsonlite::fromJSON(request), pretty = TRUE)
+    }
   } else {
-    jsonlite::fromJSON(request)
+    t <- try(jsonlite::fromJSON(request), silent = TRUE)
+    if(inherits(t, "try-error")) {
+      stop("Request failed. Likely due to an improper endpoint or stale authentication token.", call. = FALSE)
+    } else {
+      jsonlite::fromJSON(request)
+    }
   }
-
 }

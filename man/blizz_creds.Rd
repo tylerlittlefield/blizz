@@ -5,7 +5,8 @@
 \title{Install All Required Blizzard Credentials in Your \code{.Renviron} File for
 Repeated Use}
 \usage{
-blizz_creds(id, secret, overwrite = FALSE, install = TRUE)
+blizz_creds(id, secret, overwrite = FALSE, install = TRUE,
+  refresh = FALSE)
 }
 \arguments{
 \item{id}{The CLIENT ID provided to you by Blizzard formated in quotes. A client id can be acquired at \url{https://develop.battle.net/}}
@@ -15,6 +16,8 @@ blizz_creds(id, secret, overwrite = FALSE, install = TRUE)
 \item{overwrite}{If this is set to TRUE, it will overwrite an existing Blizzard credentials that you already have in your \code{.Renviron} file.}
 
 \item{install}{if TRUE, will install the key in your \code{.Renviron} file for use in future sessions.  Defaults to FALSE.}
+
+\item{refresh}{If this is set to TRUE, the CLIENT_AUTH_TOKEN will be refreshed. Blizzard Auth Tokens expire after 24 hours.}
 }
 \description{
 This function will add your BLIZZARD CLIENT ID,

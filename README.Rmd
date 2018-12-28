@@ -9,8 +9,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%",
-  message = FALSE
+  out.width = "100%"
 )
 ```
 # blizz
@@ -35,7 +34,7 @@ devtools::install_github("tyluRp/blizz")
 
 ## Additional Setup
 
-Installing the package alone isn't enough to get started. You will need to create a developer account at Blizzards new [dev portal](https://develop.battle.net/). Once you've created an account, a client needs to be made. Creating a client will produce a _Client ID_ and _Client Secret_. With these credentials you can simply run:
+Installing the package alone isn't enough to get started. You will need to create a developer account at Blizzards new [dev portal](https://develop.battle.net/). Once you've created an account, a client needs to be made. Creating a client will produce a **client ID** and **client secret**. With these credentials you can simply run:
 
 ```r
 blizz_creds("your_client_id", "your_client_secret")
@@ -44,9 +43,25 @@ blizz_creds("your_client_id", "your_client_secret")
 This will do a couple things:
 
 1. Store the Client ID and Secret in the `.Renviron` file. If you don't have one, it'll create one for you.
-2. Run a system command to produce an _auth code_ which is then stored in `.Renviron`.
+2. Run a system command to produce an **authentication token** which is then stored in `.Renviron`.
 
-After this, you're all set. If you want to avoid using `blizz_creds()`, you can do all of this yourself by following the [docs](https://develop.battle.net/documentation/guides/getting-started).
+After this, you're all set. 
+
+However, I realize that allowing some stranger (i.e. me) to modify your `.Renviron` is scary! If you want to avoid using `blizz_creds()`, you can obtain the client ID, secret, and token by following the [docs](https://develop.battle.net/documentation/guides/getting-started). Then edit the `.Renviron` file manually and supply the credentials like so:
+
+```r
+BLIZZARD_CLIENT_ID='your ID'
+BLIZZARD_CLIENT_SECRET='your secret'
+BLIZZARD_AUTH_TOKEN='your token'
+```
+
+Note that Blizzards authentication tokens expire after 24 hours. You may run:
+
+```r
+blizz_creds(refresh = TRUE)
+```
+
+To refresh the authentication token. This will remove the expired token from your `.Renviron` and add the fresh token to it. 
 
 ## Example
 
@@ -54,7 +69,8 @@ Use the `blizz()` function to access all API endpoints:
 
 ```{r example1}
 library(blizz)
-library(tidyverse)
+library(dplyr, warn.conflicts = FALSE)
+library(tidyr)
 library(janitor)
 
 # Here's one example of extracting the StarCraft II grandmaster ladder
@@ -73,5 +89,3 @@ Additionally, we can print the response as JSON thanks to the [`jsonlite`](https
 ```{r example2}
 blizz("/d3/data/act/1?locale=en_US&", json = TRUE)
 ```
-
-
