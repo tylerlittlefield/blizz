@@ -36,7 +36,7 @@ client needs to be made. Creating a client will produce a **Client ID**
 and **Client Secret**. With these credentials you can simply run:
 
 ``` r
-blizz_creds("your_client_id", "your_client_secret")
+blizz_auth("your_client_id", "your_client_secret")
 ```
 
 This will do a couple things:
@@ -65,7 +65,7 @@ Note that Blizzards authentication tokens expire after 24 hours. To
 refresh the authentication token run the following:
 
 ``` r
-blizz_creds(refresh = TRUE)
+blizz_auth(refresh = TRUE)
 ```
 
 This will remove the expired token from your `.Renviron` and add the
@@ -100,10 +100,10 @@ blizz("/sc2/ladder/grandmaster/1?") %>%
 #>  3 PartinG      Dicboy   protoss        6564    38      8   1166
 #>  4 NoWCSForU    N0SCAM   protoss        6390   202     44   2266
 #>  5 scarlett     N0SCAM   protoss        6389    59     14   1494
-#>  6 puCK         ROOT     protoss        6257    61     21   2012
+#>  6 puCK         ROOT     protoss        6264    62     21   2034
 #>  7 LiquidTLO    <NA>     zerg           6242    76     26   1772
 #>  8 Nice         <NA>     protoss        6204     1      0     73
-#>  9 DisK         PSISTM   protoss        6174    73     25   2006
+#>  9 DisK         PSISTM   protoss        6185    74     25   2032
 #> 10 JonSnow      PSISTM   zerg           6150    64     36   1829
 #> # ... with 187 more rows
 ```

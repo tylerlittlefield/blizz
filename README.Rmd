@@ -37,7 +37,7 @@ devtools::install_github("tyluRp/blizz")
 Installing the package alone isn't enough to get started. You will need to create a developer account at Blizzards new [dev portal](https://develop.battle.net/). Once you've created an account, a client needs to be made. Creating a client will produce a **Client ID** and **Client Secret**. With these credentials you can simply run:
 
 ```r
-blizz_creds("your_client_id", "your_client_secret")
+blizz_auth("your_client_id", "your_client_secret")
 ```
 
 This will do a couple things:
@@ -58,7 +58,7 @@ BLIZZARD_AUTH_TOKEN='your token'
 Note that Blizzards authentication tokens expire after 24 hours. To refresh the authentication token run the following:
 
 ```r
-blizz_creds(refresh = TRUE)
+blizz_auth(refresh = TRUE)
 ```
 
 This will remove the expired token from your `.Renviron` and add the fresh token to it. Additionally it will run `Sys.setenv("your_new_token")` to avoid having to restart the R session.
