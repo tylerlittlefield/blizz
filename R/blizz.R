@@ -15,7 +15,7 @@
 blizz <- function(endpoint, region = "us", json = FALSE) {
 
   # Fetch users auth_token
-  auth_token <- fetch_creds()[["token"]]
+  auth_token <- Sys.getenv("BLIZZARD_AUTH_TOKEN")
 
   # Fetch user region
   region <- fetch_region(region)

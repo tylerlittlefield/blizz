@@ -1,3 +1,23 @@
+authenticate <- function(id, secret) {
+  resp <- httr::VERB(
+    verb = "POST",
+    url = "https://us.battle.net/oauth/token",
+    httr::authenticate(
+      user = id,
+      password = secret
+    ),
+    body = list(
+      grant_type = "client_credentials"
+    )
+  )
+
+  resp_contents <- httr::content(resp)
+  access_token <- resp_contents[["access_token"]]
+
+  list(reponse = resp, contents = resp_contents, token = access_token)
+
+}
+
 refresh_auth <- function(id = NULL, secret = NULL) {
   if(is.null(id) & is.null(secret)) {
     id <- Sys.getenv("BLIZZARD_CLIENT_ID")

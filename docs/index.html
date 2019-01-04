@@ -97,19 +97,19 @@
 <h2 class="hasAnchor">
 <a href="#additional-setup" class="anchor"></a>Additional Setup</h2>
 <p>Installing the package alone isn’t enough to get started. You will need to create a developer account at Blizzards new <a href="https://develop.battle.net/">dev portal</a>. Once you’ve created an account, a client needs to be made. Creating a client will produce a <strong>Client ID</strong> and <strong>Client Secret</strong>. With these credentials you can simply run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/blizz_creds.html">blizz_creds</a></span>(<span class="st">"your_client_id"</span>, <span class="st">"your_client_secret"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">blizz_creds</span>(<span class="st">"your_client_id"</span>, <span class="st">"your_client_secret"</span>)</a></code></pre></div>
 <p>This will do a couple things:</p>
 <ol style="list-style-type: decimal">
 <li>Store the Client ID and Secret in the <code>.Renviron</code> file. If you don’t have one, it’ll create one for you.</li>
 <li>Run a system command to produce an <strong>authentication token</strong> which is then stored in <code>.Renviron</code>.</li>
 </ol>
 <p>After this, you’re all set.</p>
-<p>However, I realize that allowing some stranger (i.e. me) to modify your <code>.Renviron</code> is scary! If you want to avoid using <code><a href="reference/blizz_creds.html">blizz_creds()</a></code>, you can obtain the client ID, secret, and token by following the <a href="https://develop.battle.net/documentation/guides/getting-started">docs</a>. Then edit the <code>.Renviron</code> file manually and supply the credentials like so:</p>
+<p>However, I realize that allowing some stranger (i.e. me) to modify your <code>.Renviron</code> is scary! If you want to avoid using <code><a href="https://www.rdocumentation.org/packages/blizz/topics/blizz_creds">blizz_creds()</a></code>, you can obtain the client ID, secret, and token by following the <a href="https://develop.battle.net/documentation/guides/getting-started">docs</a>. Then edit the <code>.Renviron</code> file manually and supply the credentials like so:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">BLIZZARD_CLIENT_ID=<span class="st">'your ID'</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">BLIZZARD_CLIENT_SECRET=<span class="st">'your secret'</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">BLIZZARD_AUTH_TOKEN=<span class="st">'your token'</span></a></code></pre></div>
 <p>Note that Blizzards authentication tokens expire after 24 hours. To refresh the authentication token run the following:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/blizz_creds.html">blizz_creds</a></span>(<span class="dt">refresh =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">blizz_creds</span>(<span class="dt">refresh =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>This will remove the expired token from your <code>.Renviron</code> and add the fresh token to it. Additionally it will run <code><a href="https://www.rdocumentation.org/packages/base/topics/Sys.setenv">Sys.setenv("your_new_token")</a></code> to avoid having to restart the R session.</p>
 </div>
 <div id="example" class="section level2">
@@ -138,7 +138,7 @@
 <a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt;  3 PartinG      Dicboy   protoss        6564    38      8   1166</span></a>
 <a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt;  4 NoWCSForU    N0SCAM   protoss        6390   202     44   2266</span></a>
 <a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt;  5 scarlett     N0SCAM   protoss        6389    59     14   1494</span></a>
-<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt;  6 puCK         ROOT     protoss        6257    61     21   2012</span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt;  6 puCK         ROOT     protoss        6264    62     21   2034</span></a>
 <a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt;  7 LiquidTLO    &lt;NA&gt;     zerg           6242    76     26   1772</span></a>
 <a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt;  8 Nice         &lt;NA&gt;     protoss        6204     1      0     73</span></a>
 <a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt;  9 DisK         PSISTM   protoss        6174    73     25   2006</span></a>
