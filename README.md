@@ -48,9 +48,8 @@ This will do a couple things:
 
 After this, you’re all set.
 
-However, I realize that allowing some stranger (i.e. me) to modify your
-`.Renviron` is scary\! If you want to avoid using `blizz_creds()`, you
-can obtain the client ID, secret, and token by following the
+If you want to avoid using `blizz_auth()`, you can obtain the Client ID,
+Secret, and Token by following the
 [docs](https://develop.battle.net/documentation/guides/getting-started).
 Then edit the `.Renviron` file manually and supply the credentials like
 so:
