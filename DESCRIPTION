@@ -20,8 +20,12 @@ Depends:
 Imports: 
     jsonlite,
     glue,
-    utils
+    utils,
+    httr
 RoxygenNote: 6.1.1
 Suggests: 
     covr,
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

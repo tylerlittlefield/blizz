@@ -19,6 +19,9 @@
 blizz_creds <- function(id, secret, overwrite = FALSE, install = TRUE, refresh = FALSE) {
   if(refresh) {
     token <- refresh_auth()
+    bare_token <- strsplit(token, "=")[[1]][2]
+    bare_token <- gsub("'", "", bare_token)
+    Sys.setenv(BLIZZARD_AUTH_TOKEN = bare_token) # to prevent having to restart R
     home <- Sys.getenv("HOME")
     renv <- file.path(home, ".Renviron")
     old_renv <- utils::read.table(renv, stringsAsFactors = FALSE)

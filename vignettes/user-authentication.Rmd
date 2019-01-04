@@ -1,0 +1,19 @@
+---
+title: "User Authentication"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{User Authentication}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(blizz)
+```

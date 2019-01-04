@@ -32,8 +32,8 @@ devtools::install_github("tyluRp/blizz")
 Installing the package alone isn’t enough to get started. You will need
 to create a developer account at Blizzards new [dev
 portal](https://develop.battle.net/). Once you’ve created an account, a
-client needs to be made. Creating a client will produce a **client ID**
-and **client secret**. With these credentials you can simply run:
+client needs to be made. Creating a client will produce a **Client ID**
+and **Client Secret**. With these credentials you can simply run:
 
 ``` r
 blizz_creds("your_client_id", "your_client_secret")
@@ -61,19 +61,21 @@ BLIZZARD_CLIENT_SECRET='your secret'
 BLIZZARD_AUTH_TOKEN='your token'
 ```
 
-Note that Blizzards authentication tokens expire after 24 hours. You may
-run:
+Note that Blizzards authentication tokens expire after 24 hours. To
+refresh the authentication token run the following:
 
 ``` r
 blizz_creds(refresh = TRUE)
 ```
 
-To refresh the authentication token. This will remove the expired token
-from your `.Renviron` and add the fresh token to it.
+This will remove the expired token from your `.Renviron` and add the
+fresh token to it. Additionally it will run
+`Sys.setenv("your_new_token")` to avoid having to restart the R session.
 
 ## Example
 
-Use the `blizz()` function to access all API endpoints:
+Use the `blizz()` function to access all API endpoints. Note that the
+leading slash must be included as well:
 
 ``` r
 library(blizz)
@@ -89,21 +91,21 @@ blizz("/sc2/ladder/grandmaster/1?") %>%
   clean_names("snake") %>% 
   select(display_name, clan_tag, favorite_race, mmr, wins, losses, points)
 #> Attempting to pull data from:
-#> https://us.api.blizzard.com//sc2/ladder/grandmaster/1?access_token=[*]
-#> # A tibble: 200 x 7
+#> https://us.api.blizzard.com/sc2/ladder/grandmaster/1?access_token=[*]
+#> # A tibble: 197 x 7
 #>    display_name clan_tag favorite_race   mmr  wins losses points
 #>    <chr>        <chr>    <chr>         <int> <int>  <int>  <int>
-#>  1 Chammy       Scyth    zerg           6550    90     26   2145
-#>  2 PartinG      Dicboy   protoss        6547    33      7    926
-#>  3 scarlett     N0SCAM   protoss        6389    59     14   1494
-#>  4 Astrea       AlpX     protoss        6308    67     31   1892
-#>  5 LiquidTLO    <NA>     zerg           6238    52     19   1030
-#>  6 NoWCSForU    N0SCAM   protoss        6234   183     43   2054
-#>  7 Rob          PATTYS   protoss        6200   409    210   2106
-#>  8 Probe        <NA>     protoss        6198   107     19   2005
-#>  9 iGMacSed     <NA>     protoss        6145    39      6   1381
-#> 10 puCK         ROOT     protoss        6124   274    160   2099
-#> # ... with 190 more rows
+#>  1 Chammy       Scyth    zerg           6607   108     27   2375
+#>  2 PartinG      Cl0wn    protoss        6568    42     12    976
+#>  3 PartinG      Dicboy   protoss        6564    38      8   1166
+#>  4 NoWCSForU    N0SCAM   protoss        6390   202     44   2266
+#>  5 scarlett     N0SCAM   protoss        6389    59     14   1494
+#>  6 puCK         ROOT     protoss        6257    61     21   2012
+#>  7 LiquidTLO    <NA>     zerg           6242    76     26   1772
+#>  8 Nice         <NA>     protoss        6204     1      0     73
+#>  9 DisK         PSISTM   protoss        6174    73     25   2006
+#> 10 JonSnow      PSISTM   zerg           6150    64     36   1829
+#> # ... with 187 more rows
 ```
 
 When making a request you pretty much need to copy and paste everything
@@ -116,7 +118,7 @@ Additionally, we can print the response as JSON thanks to the
 ``` r
 blizz("/d3/data/act/1?locale=en_US&", json = TRUE)
 #> Attempting to pull data from:
-#> https://us.api.blizzard.com//d3/data/act/1?locale=en_US&access_token=[*]
+#> https://us.api.blizzard.com/d3/data/act/1?locale=en_US&access_token=[*]
 #> {
 #>   "slug": ["act-i"],
 #>   "number": [1],

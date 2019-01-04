@@ -34,7 +34,7 @@ devtools::install_github("tyluRp/blizz")
 
 ## Additional Setup
 
-Installing the package alone isn't enough to get started. You will need to create a developer account at Blizzards new [dev portal](https://develop.battle.net/). Once you've created an account, a client needs to be made. Creating a client will produce a **client ID** and **client secret**. With these credentials you can simply run:
+Installing the package alone isn't enough to get started. You will need to create a developer account at Blizzards new [dev portal](https://develop.battle.net/). Once you've created an account, a client needs to be made. Creating a client will produce a **Client ID** and **Client Secret**. With these credentials you can simply run:
 
 ```r
 blizz_creds("your_client_id", "your_client_secret")
@@ -55,17 +55,17 @@ BLIZZARD_CLIENT_SECRET='your secret'
 BLIZZARD_AUTH_TOKEN='your token'
 ```
 
-Note that Blizzards authentication tokens expire after 24 hours. You may run:
+Note that Blizzards authentication tokens expire after 24 hours. To refresh the authentication token run the following:
 
 ```r
 blizz_creds(refresh = TRUE)
 ```
 
-To refresh the authentication token. This will remove the expired token from your `.Renviron` and add the fresh token to it. 
+This will remove the expired token from your `.Renviron` and add the fresh token to it. Additionally it will run `Sys.setenv("your_new_token")` to avoid having to restart the R session.
 
 ## Example
 
-Use the `blizz()` function to access all API endpoints:
+Use the `blizz()` function to access all API endpoints. Note that the leading slash must be included as well:
 
 ```{r example1}
 library(blizz)
