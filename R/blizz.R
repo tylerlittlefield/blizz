@@ -25,16 +25,7 @@ blizz <- function(endpoint, locale = "en_US", namespace = NULL, json = FALSE) {
       access_token = Sys.getenv("BLIZZARD_AUTH_TOKEN"))
   )
 
-  req_url <- x[["url"]]
-  req_url <- gsub("\\=.*", "", req_url)
-  status <- x[["status_code"]]
-  content_type <- x[["headers"]][["content-type"]]
-
-  info <- glue::glue(
-    "Request: {req_url}=[*]
-     Status: {status}
-     Content-Type: {content_type}"
-  )
+  info <- fetch_info(x)
 
   message(info)
 

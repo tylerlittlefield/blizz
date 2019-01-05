@@ -35,3 +35,16 @@ refresh_token <- function(access_token) {
     row.names = FALSE
   )
 }
+
+fetch_info <- function(request) {
+  req_url <- request[["url"]]
+  req_url <- gsub("\\=.*", "", req_url)
+  status <- request[["status_code"]]
+  content_type <- request[["headers"]][["content-type"]]
+
+  glue::glue(
+    "Request: {req_url}=[*]
+     Status: {status}
+     Content-Type: {content_type}"
+  )
+}
