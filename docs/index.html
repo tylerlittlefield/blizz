@@ -105,7 +105,7 @@
 <a class="sourceLine" id="cb3-3" data-line-number="3">BLIZZARD_AUTH_TOKEN=<span class="st">'your token'</span></a></code></pre></div>
 <p>Note: Blizzard’s authentication tokens expire after 24 hours. To refresh the authentication token run the following:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/blizz_auth.html">blizz_auth</a></span>(<span class="dt">refresh =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>This will remove the expired token from your <code>.Renviron</code> and add the fresh token to it.</p>
+<p>This will remove the expired token from your <code>.Renviron</code> and add the fresh token to it. More info on how to get started can be found in <a href="https://blizz.netlify.com/articles/user-authentication.html"><strong>this</strong></a> vignette.</p>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -114,9 +114,9 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(blizz)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="reference/blizz.html">blizz</a></span>(<span class="st">"/d3/data/act/1"</span>)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; Request: https://us.api.blizzard.com/d3/data/act/1?locale=[*]</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; Status: 200</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; Content-Type: application/json;charset=UTF-8</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; ✔ Request:https://us.api.blizzard.com/d3/data/act/1?locale</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; ✔ Status: 200</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; ✔ Content-Type: application/json;charset=UTF-8</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; $slug</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; [1] "act-i"</span></a>
 <a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; </span></a>
@@ -140,9 +140,9 @@
 <a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; 10 136656  Return to New Tristram  return-to-new-tristram</span></a></code></pre></div>
 <p>Additionally, we can print the response as JSON thanks to the <a href="https://github.com/jeroen/jsonlite"><code>jsonlite</code></a> package:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/blizz.html">blizz</a></span>(<span class="st">"/d3/data/act/1"</span>, <span class="dt">json =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; Request: https://us.api.blizzard.com/d3/data/act/1?locale=[*]</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; Status: 200</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; Content-Type: application/json;charset=UTF-8</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; ✔ Request:https://us.api.blizzard.com/d3/data/act/1?locale</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; ✔ Status: 200</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; ✔ Content-Type: application/json;charset=UTF-8</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; {</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;   "slug": ["act-i"],</span></a>
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;   "number": [1],</span></a>
