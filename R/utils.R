@@ -42,9 +42,9 @@ print_info <- function(request) {
   status <- request[["status_code"]]
   content_type <- request[["headers"]][["content-type"]]
 
-  x <- glue::glue(crayon::bold(" Request:"), req_url)
-  y <- glue::glue(crayon::bold(" Status:"), " ", status)
-  z <- glue::glue(crayon::bold(" Content-Type:"), " ", content_type)
+  x <- glue::glue(crayon::bold(" Request: "), req_url)
+  y <- glue::glue(crayon::bold(" Status: "), status)
+  z <- glue::glue(crayon::bold(" Content-Type: "), content_type)
 
   # TODO: Add more status codes to 200, there's many more that aren't failures
   if(status %in% c(200L)) {
