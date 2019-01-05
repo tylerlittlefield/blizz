@@ -25,14 +25,13 @@ blizz <- function(endpoint, locale = "en_US", namespace = NULL, json = FALSE) {
       access_token = Sys.getenv("BLIZZARD_AUTH_TOKEN"))
   )
 
-  info <- fetch_info(x)
-
-  message(info)
+  print_info(x)         # get request info: url, status code, content type
+  x <- httr::content(x) # grab the request content
 
   if(json) {
-    jsonlite::toJSON(httr::content(x), pretty = TRUE)
+    jsonlite::toJSON(x, pretty = TRUE)
   } else {
-    x <- httr::content(x)
-    jsonlite::fromJSON(jsonlite::toJSON(x))
+    x <- jsonlite::toJSON(x)
+    jsonlite::fromJSON(x)
   }
 }

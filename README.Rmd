@@ -60,7 +60,7 @@ This will remove the expired token from your `.Renviron` and add the fresh token
 
 ## Example
 
-Use the `blizz()` function to access all API endpoints. Note that the leading slash must be included as well:
+Use the `blizz()` function to access all API endpoints. Note that the leading slash must be included as well: 
 
 ```{r example1}
 library(blizz)

@@ -36,15 +36,32 @@ refresh_token <- function(access_token) {
   )
 }
 
-fetch_info <- function(request) {
+print_info <- function(request) {
   req_url <- request[["url"]]
   req_url <- gsub("\\=.*", "", req_url)
   status <- request[["status_code"]]
   content_type <- request[["headers"]][["content-type"]]
 
-  glue::glue(
-    "Request: {req_url}=[*]
-     Status: {status}
-     Content-Type: {content_type}"
-  )
+  x <- glue::glue(crayon::bold(" Request:"), req_url)
+  y <- glue::glue(crayon::bold(" Status:"), " ", status)
+  z <- glue::glue(crayon::bold(" Content-Type:"), " ", content_type)
+
+  if(status %in% c(200L)) {
+    cat(
+      glue::glue(
+        crayon::green(cli::symbol$tick), x, "\n",
+        crayon::green(cli::symbol$tick), y, "\n",
+        crayon::green(cli::symbol$tick), z, "\n",
+      )
+    )
+  } else {
+    cat(
+      glue::glue(
+        crayon::red(cli::symbol$cross), x, "\n",
+        crayon::red(cli::symbol$cross), y, "\n",
+        crayon::yellow(cli::symbol$bullet), z, "\n",
+      )
+    )
+  }
 }
+

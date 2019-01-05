@@ -21,7 +21,9 @@ Imports:
     jsonlite,
     glue,
     utils,
-    httr
+    httr,
+    crayon,
+    cli
 RoxygenNote: 6.1.1
 Suggests: 
     covr,

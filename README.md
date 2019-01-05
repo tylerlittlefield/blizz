@@ -73,9 +73,9 @@ leading slash must be included as well:
 library(blizz)
 
 blizz("/d3/data/act/1")
-#> Request: https://us.api.blizzard.com/d3/data/act/1?locale=[*]
-#> Status: 200
-#> Content-Type: application/json;charset=UTF-8
+#> ✔ Request:https://us.api.blizzard.com/d3/data/act/1?locale
+#> ✔ Status: 200
+#> ✔ Content-Type: application/json;charset=UTF-8
 #> $slug
 #> [1] "act-i"
 #> 
@@ -104,9 +104,9 @@ Additionally, we can print the response as JSON thanks to the
 
 ``` r
 blizz("/d3/data/act/1", json = TRUE)
-#> Request: https://us.api.blizzard.com/d3/data/act/1?locale=[*]
-#> Status: 200
-#> Content-Type: application/json;charset=UTF-8
+#> ✔ Request:https://us.api.blizzard.com/d3/data/act/1?locale
+#> ✔ Status: 200
+#> ✔ Content-Type: application/json;charset=UTF-8
 #> {
 #>   "slug": ["act-i"],
 #>   "number": [1],
