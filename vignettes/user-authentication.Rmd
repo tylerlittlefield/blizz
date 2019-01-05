@@ -25,7 +25,7 @@ Once you've:
 1. Created an account at https://develop.battle.net/
 2. Downloaded and logged into the authenticator app
 
-You can login to https://develop.battle.net/. A notification on the authenticator app will prompt you to approve the login and you're good to. You're ready to proceed to the next step and create a client.
+You can login to https://develop.battle.net/. A notification on the authenticator app will prompt you to approve the login and you're good to go. You're ready to proceed to the next step and create a client.
 
 ### Step 2: Create a client
 
