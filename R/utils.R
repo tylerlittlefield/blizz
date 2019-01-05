@@ -35,12 +35,3 @@ refresh_token <- function(access_token) {
     row.names = FALSE
   )
 }
-
-fetch_region <- function(region) {
-  if(any(regions[["region"]] %in% region)) {
-    output <- regions[regions[["region"]] == region,][1,]
-  } else {
-    stop("The region: ", region, " does not exist.")
-  }
-  return(output)
-}
