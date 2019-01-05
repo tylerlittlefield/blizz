@@ -130,7 +130,7 @@ the US. Finally, you may view the data as a JSON object i.e.
     
     </div>
 
-    <pre class="usage"><span class='fu'>blizz</span>(<span class='no'>endpoint</span>, <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"us"</span>, <span class='kw'>json</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>blizz</span>(<span class='no'>endpoint</span>, <span class='kw'>locale</span> <span class='kw'>=</span> <span class='st'>"en_US"</span>, <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>json</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,10 +140,16 @@ the US. Finally, you may view the data as a JSON object i.e.
       <td><p>An endpoint provided by Blizzards API documentation</p></td>
     </tr>
     <tr>
-      <th>region</th>
-      <td><p>API data is limited to specific regions. For example, US APIs
-accessed through us.battle.net only contain data from US battlegroups and
-realms. See the dataset <code>regions</code> for more info.</p></td>
+      <th>locale</th>
+      <td><p>All available API resources provide localized strings using the
+locale query string parameter. Supported locales vary from region to region
+and align with those supported on Blizzard community sites.</p></td>
+    </tr>
+    <tr>
+      <th>namespace</th>
+      <td><p>Namespaces in Game Data and Profile APIs that allow JSON
+documents to be published contextually in relation to a specific patch or
+point in time.</p></td>
     </tr>
     <tr>
       <th>json</th>

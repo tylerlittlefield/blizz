@@ -96,116 +96,110 @@
 <div id="additional-setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#additional-setup" class="anchor"></a>Additional Setup</h2>
-<p>Installing the package alone isn’t enough to get started. You will need to create a developer account at Blizzards new <a href="https://develop.battle.net/">dev portal</a>. Once you’ve created an account, a client needs to be made. Creating a client will produce a <strong>Client ID</strong> and <strong>Client Secret</strong>. With these credentials you can simply run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">blizz_creds</span>(<span class="st">"your_client_id"</span>, <span class="st">"your_client_secret"</span>)</a></code></pre></div>
-<p>This will do a couple things:</p>
-<ol style="list-style-type: decimal">
-<li>Store the Client ID and Secret in the <code>.Renviron</code> file. If you don’t have one, it’ll create one for you.</li>
-<li>Run a system command to produce an <strong>authentication token</strong> which is then stored in <code>.Renviron</code>.</li>
-</ol>
+<p>You need to create a developer account at Blizzard’s <a href="https://develop.battle.net/"><strong>dev portal</strong></a>. Once you’ve created an account, a client needs to be made. Creating a client will produce a <strong>Client ID</strong> and <strong>Client Secret</strong>. With these credentials you can simply run:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/blizz_auth.html">blizz_auth</a></span>(<span class="st">"your_client_id"</span>, <span class="st">"your_client_secret"</span>)</a></code></pre></div>
 <p>After this, you’re all set.</p>
-<p>However, I realize that allowing some stranger (i.e. me) to modify your <code>.Renviron</code> is scary! If you want to avoid using <code><a href="https://www.rdocumentation.org/packages/blizz/topics/blizz_creds">blizz_creds()</a></code>, you can obtain the client ID, secret, and token by following the <a href="https://develop.battle.net/documentation/guides/getting-started">docs</a>. Then edit the <code>.Renviron</code> file manually and supply the credentials like so:</p>
+<p>If you want to avoid using <code><a href="reference/blizz_auth.html">blizz_auth()</a></code>, you can obtain the Client ID, Secret, and Token by following the <a href="https://develop.battle.net/documentation/guides/getting-started">docs</a>. Then edit the <code>.Renviron</code> file manually and supply the credentials like so:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">BLIZZARD_CLIENT_ID=<span class="st">'your ID'</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">BLIZZARD_CLIENT_SECRET=<span class="st">'your secret'</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">BLIZZARD_AUTH_TOKEN=<span class="st">'your token'</span></a></code></pre></div>
-<p>Note that Blizzards authentication tokens expire after 24 hours. To refresh the authentication token run the following:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">blizz_creds</span>(<span class="dt">refresh =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>This will remove the expired token from your <code>.Renviron</code> and add the fresh token to it. Additionally it will run <code><a href="https://www.rdocumentation.org/packages/base/topics/Sys.setenv">Sys.setenv("your_new_token")</a></code> to avoid having to restart the R session.</p>
+<p>Note: Blizzard’s authentication tokens expire after 24 hours. To refresh the authentication token run the following:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/blizz_auth.html">blizz_auth</a></span>(<span class="dt">refresh =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>This will remove the expired token from your <code>.Renviron</code> and add the fresh token to it.</p>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>Use the <code><a href="reference/blizz.html">blizz()</a></code> function to access all API endpoints. Note that the leading slash must be included as well:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(blizz)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr, <span class="dt">warn.conflicts =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyr)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(janitor)</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co"># Here's one example of extracting the StarCraft II grandmaster ladder</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw"><a href="reference/blizz.html">blizz</a></span>(<span class="st">"/sc2/ladder/grandmaster/1?"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="st">  </span>.[[<span class="st">"ladderTeams"</span>]] <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/janitor/topics/clean_names">clean_names</a></span>(<span class="st">"snake"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(display_name, clan_tag, favorite_race, mmr, wins, losses, points)</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; Attempting to pull data from:</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; https://us.api.blizzard.com/sc2/ladder/grandmaster/1?access_token=[*]</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; # A tibble: 197 x 7</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt;    display_name clan_tag favorite_race   mmr  wins losses points</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;         &lt;int&gt; &lt;int&gt;  &lt;int&gt;  &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt;  1 Chammy       Scyth    zerg           6607   108     27   2375</span></a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt;  2 PartinG      Cl0wn    protoss        6568    42     12    976</span></a>
-<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt;  3 PartinG      Dicboy   protoss        6564    38      8   1166</span></a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt;  4 NoWCSForU    N0SCAM   protoss        6390   202     44   2266</span></a>
-<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt;  5 scarlett     N0SCAM   protoss        6389    59     14   1494</span></a>
-<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt;  6 puCK         ROOT     protoss        6264    62     21   2034</span></a>
-<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt;  7 LiquidTLO    &lt;NA&gt;     zerg           6242    76     26   1772</span></a>
-<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt;  8 Nice         &lt;NA&gt;     protoss        6204     1      0     73</span></a>
-<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt;  9 DisK         PSISTM   protoss        6174    73     25   2006</span></a>
-<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; 10 JonSnow      PSISTM   zerg           6150    64     36   1829</span></a>
-<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co">#&gt; # ... with 187 more rows</span></a></code></pre></div>
-<p>When making a request you pretty much need to copy and paste everything in-between the request URL and the access token. In the example above, we needed <code>/sc2/ladder/grandmaster/1?</code>.</p>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="reference/blizz.html">blizz</a></span>(<span class="st">"/d3/data/act/1"</span>)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; Request: https://us.api.blizzard.com/d3/data/act/1?locale=[*]</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; Status: 200</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; Content-Type: application/json;charset=UTF-8</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; $slug</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; [1] "act-i"</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; $number</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; [1] 1</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; $name</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; [1] "Act I"</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; $quests</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;        id                    name                    slug</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; 1   87700         The Fallen Star         the-fallen-star</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 2   72095      The Legacy of Cain      the-legacy-of-cain</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; 3   72221       A Shattered Crown       a-shattered-crown</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; 4   72061 Reign of the Black King reign-of-the-black-king</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; 5  117779   Sword of the Stranger   sword-of-the-stranger</span></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; 6   72738        The Broken Blade        the-broken-blade</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; 7   73236     The Doom in Wortham     the-doom-in-wortham</span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt; 8   72546      Trailing the Coven      trailing-the-coven</span></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt; 9   72801    The Imprisoned Angel    the-imprisoned-angel</span></a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; 10 136656  Return to New Tristram  return-to-new-tristram</span></a></code></pre></div>
 <p>Additionally, we can print the response as JSON thanks to the <a href="https://github.com/jeroen/jsonlite"><code>jsonlite</code></a> package:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/blizz.html">blizz</a></span>(<span class="st">"/d3/data/act/1?locale=en_US&amp;"</span>, <span class="dt">json =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; Attempting to pull data from:</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; https://us.api.blizzard.com/d3/data/act/1?locale=en_US&amp;access_token=[*]</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; {</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;   "slug": ["act-i"],</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;   "number": [1],</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;   "name": ["Act I"],</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt;   "quests": [</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt;     {</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt;       "id": 87700,</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt;       "name": "The Fallen Star",</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;       "slug": "the-fallen-star"</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt;     },</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt;     {</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt;       "id": 72095,</span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt;       "name": "The Legacy of Cain",</span></a>
-<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="co">#&gt;       "slug": "the-legacy-of-cain"</span></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co">#&gt;     },</span></a>
-<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co">#&gt;     {</span></a>
-<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co">#&gt;       "id": 72221,</span></a>
-<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="co">#&gt;       "name": "A Shattered Crown",</span></a>
-<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt;       "slug": "a-shattered-crown"</span></a>
-<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt;     },</span></a>
-<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co">#&gt;     {</span></a>
-<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">#&gt;       "id": 72061,</span></a>
-<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">#&gt;       "name": "Reign of the Black King",</span></a>
-<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co">#&gt;       "slug": "reign-of-the-black-king"</span></a>
-<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co">#&gt;     },</span></a>
-<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="co">#&gt;     {</span></a>
-<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="co">#&gt;       "id": 117779,</span></a>
-<a class="sourceLine" id="cb6-31" data-line-number="31"><span class="co">#&gt;       "name": "Sword of the Stranger",</span></a>
-<a class="sourceLine" id="cb6-32" data-line-number="32"><span class="co">#&gt;       "slug": "sword-of-the-stranger"</span></a>
-<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="co">#&gt;     },</span></a>
-<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="co">#&gt;     {</span></a>
-<a class="sourceLine" id="cb6-35" data-line-number="35"><span class="co">#&gt;       "id": 72738,</span></a>
-<a class="sourceLine" id="cb6-36" data-line-number="36"><span class="co">#&gt;       "name": "The Broken Blade",</span></a>
-<a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co">#&gt;       "slug": "the-broken-blade"</span></a>
-<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="co">#&gt;     },</span></a>
-<a class="sourceLine" id="cb6-39" data-line-number="39"><span class="co">#&gt;     {</span></a>
-<a class="sourceLine" id="cb6-40" data-line-number="40"><span class="co">#&gt;       "id": 73236,</span></a>
-<a class="sourceLine" id="cb6-41" data-line-number="41"><span class="co">#&gt;       "name": "The Doom in Wortham",</span></a>
-<a class="sourceLine" id="cb6-42" data-line-number="42"><span class="co">#&gt;       "slug": "the-doom-in-wortham"</span></a>
-<a class="sourceLine" id="cb6-43" data-line-number="43"><span class="co">#&gt;     },</span></a>
-<a class="sourceLine" id="cb6-44" data-line-number="44"><span class="co">#&gt;     {</span></a>
-<a class="sourceLine" id="cb6-45" data-line-number="45"><span class="co">#&gt;       "id": 72546,</span></a>
-<a class="sourceLine" id="cb6-46" data-line-number="46"><span class="co">#&gt;       "name": "Trailing the Coven",</span></a>
-<a class="sourceLine" id="cb6-47" data-line-number="47"><span class="co">#&gt;       "slug": "trailing-the-coven"</span></a>
-<a class="sourceLine" id="cb6-48" data-line-number="48"><span class="co">#&gt;     },</span></a>
-<a class="sourceLine" id="cb6-49" data-line-number="49"><span class="co">#&gt;     {</span></a>
-<a class="sourceLine" id="cb6-50" data-line-number="50"><span class="co">#&gt;       "id": 72801,</span></a>
-<a class="sourceLine" id="cb6-51" data-line-number="51"><span class="co">#&gt;       "name": "The Imprisoned Angel",</span></a>
-<a class="sourceLine" id="cb6-52" data-line-number="52"><span class="co">#&gt;       "slug": "the-imprisoned-angel"</span></a>
-<a class="sourceLine" id="cb6-53" data-line-number="53"><span class="co">#&gt;     },</span></a>
-<a class="sourceLine" id="cb6-54" data-line-number="54"><span class="co">#&gt;     {</span></a>
-<a class="sourceLine" id="cb6-55" data-line-number="55"><span class="co">#&gt;       "id": 136656,</span></a>
-<a class="sourceLine" id="cb6-56" data-line-number="56"><span class="co">#&gt;       "name": "Return to New Tristram",</span></a>
-<a class="sourceLine" id="cb6-57" data-line-number="57"><span class="co">#&gt;       "slug": "return-to-new-tristram"</span></a>
-<a class="sourceLine" id="cb6-58" data-line-number="58"><span class="co">#&gt;     }</span></a>
-<a class="sourceLine" id="cb6-59" data-line-number="59"><span class="co">#&gt;   ]</span></a>
-<a class="sourceLine" id="cb6-60" data-line-number="60"><span class="co">#&gt; }</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/blizz.html">blizz</a></span>(<span class="st">"/d3/data/act/1"</span>, <span class="dt">json =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; Request: https://us.api.blizzard.com/d3/data/act/1?locale=[*]</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; Status: 200</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; Content-Type: application/json;charset=UTF-8</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; {</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;   "slug": ["act-i"],</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;   "number": [1],</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt;   "name": ["Act I"],</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt;   "quests": [</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt;     {</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt;       "id": [87700],</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;       "name": ["The Fallen Star"],</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt;       "slug": ["the-fallen-star"]</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt;     },</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt;     {</span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt;       "id": [72095],</span></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="co">#&gt;       "name": ["The Legacy of Cain"],</span></a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co">#&gt;       "slug": ["the-legacy-of-cain"]</span></a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co">#&gt;     },</span></a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co">#&gt;     {</span></a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="co">#&gt;       "id": [72221],</span></a>
+<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt;       "name": ["A Shattered Crown"],</span></a>
+<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt;       "slug": ["a-shattered-crown"]</span></a>
+<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co">#&gt;     },</span></a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">#&gt;     {</span></a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">#&gt;       "id": [72061],</span></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co">#&gt;       "name": ["Reign of the Black King"],</span></a>
+<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co">#&gt;       "slug": ["reign-of-the-black-king"]</span></a>
+<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="co">#&gt;     },</span></a>
+<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="co">#&gt;     {</span></a>
+<a class="sourceLine" id="cb6-31" data-line-number="31"><span class="co">#&gt;       "id": [117779],</span></a>
+<a class="sourceLine" id="cb6-32" data-line-number="32"><span class="co">#&gt;       "name": ["Sword of the Stranger"],</span></a>
+<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="co">#&gt;       "slug": ["sword-of-the-stranger"]</span></a>
+<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="co">#&gt;     },</span></a>
+<a class="sourceLine" id="cb6-35" data-line-number="35"><span class="co">#&gt;     {</span></a>
+<a class="sourceLine" id="cb6-36" data-line-number="36"><span class="co">#&gt;       "id": [72738],</span></a>
+<a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co">#&gt;       "name": ["The Broken Blade"],</span></a>
+<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="co">#&gt;       "slug": ["the-broken-blade"]</span></a>
+<a class="sourceLine" id="cb6-39" data-line-number="39"><span class="co">#&gt;     },</span></a>
+<a class="sourceLine" id="cb6-40" data-line-number="40"><span class="co">#&gt;     {</span></a>
+<a class="sourceLine" id="cb6-41" data-line-number="41"><span class="co">#&gt;       "id": [73236],</span></a>
+<a class="sourceLine" id="cb6-42" data-line-number="42"><span class="co">#&gt;       "name": ["The Doom in Wortham"],</span></a>
+<a class="sourceLine" id="cb6-43" data-line-number="43"><span class="co">#&gt;       "slug": ["the-doom-in-wortham"]</span></a>
+<a class="sourceLine" id="cb6-44" data-line-number="44"><span class="co">#&gt;     },</span></a>
+<a class="sourceLine" id="cb6-45" data-line-number="45"><span class="co">#&gt;     {</span></a>
+<a class="sourceLine" id="cb6-46" data-line-number="46"><span class="co">#&gt;       "id": [72546],</span></a>
+<a class="sourceLine" id="cb6-47" data-line-number="47"><span class="co">#&gt;       "name": ["Trailing the Coven"],</span></a>
+<a class="sourceLine" id="cb6-48" data-line-number="48"><span class="co">#&gt;       "slug": ["trailing-the-coven"]</span></a>
+<a class="sourceLine" id="cb6-49" data-line-number="49"><span class="co">#&gt;     },</span></a>
+<a class="sourceLine" id="cb6-50" data-line-number="50"><span class="co">#&gt;     {</span></a>
+<a class="sourceLine" id="cb6-51" data-line-number="51"><span class="co">#&gt;       "id": [72801],</span></a>
+<a class="sourceLine" id="cb6-52" data-line-number="52"><span class="co">#&gt;       "name": ["The Imprisoned Angel"],</span></a>
+<a class="sourceLine" id="cb6-53" data-line-number="53"><span class="co">#&gt;       "slug": ["the-imprisoned-angel"]</span></a>
+<a class="sourceLine" id="cb6-54" data-line-number="54"><span class="co">#&gt;     },</span></a>
+<a class="sourceLine" id="cb6-55" data-line-number="55"><span class="co">#&gt;     {</span></a>
+<a class="sourceLine" id="cb6-56" data-line-number="56"><span class="co">#&gt;       "id": [136656],</span></a>
+<a class="sourceLine" id="cb6-57" data-line-number="57"><span class="co">#&gt;       "name": ["Return to New Tristram"],</span></a>
+<a class="sourceLine" id="cb6-58" data-line-number="58"><span class="co">#&gt;       "slug": ["return-to-new-tristram"]</span></a>
+<a class="sourceLine" id="cb6-59" data-line-number="59"><span class="co">#&gt;     }</span></a>
+<a class="sourceLine" id="cb6-60" data-line-number="60"><span class="co">#&gt;   ]</span></a>
+<a class="sourceLine" id="cb6-61" data-line-number="61"><span class="co">#&gt; }</span></a></code></pre></div>
 </div>
 </div>
   </div>
