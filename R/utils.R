@@ -46,6 +46,7 @@ print_info <- function(request) {
   y <- glue::glue(crayon::bold(" Status:"), " ", status)
   z <- glue::glue(crayon::bold(" Content-Type:"), " ", content_type)
 
+  # TODO: Add more status codes to 200, there's many more that aren't failures
   if(status %in% c(200L)) {
     cat(
       glue::glue(
