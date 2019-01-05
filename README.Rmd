@@ -69,23 +69,12 @@ Use the `blizz()` function to access all API endpoints. Note that the leading sl
 
 ```{r example1}
 library(blizz)
-library(dplyr, warn.conflicts = FALSE)
-library(tidyr)
-library(janitor)
 
-# Here's one example of extracting the StarCraft II grandmaster ladder
-blizz("/sc2/ladder/grandmaster/1?") %>% 
-  .[["ladderTeams"]] %>% 
-  unnest() %>% 
-  as_tibble() %>% 
-  clean_names("snake") %>% 
-  select(display_name, clan_tag, favorite_race, mmr, wins, losses, points)
+blizz("/d3/data/act/1")
 ```
-
-When making a request you pretty much need to copy and paste everything in-between the request URL and the access token. In the example above, we needed `/sc2/ladder/grandmaster/1?`. 
 
 Additionally, we can print the response as JSON thanks to the [`jsonlite`](https://github.com/jeroen/jsonlite) package:
 
 ```{r example2}
-blizz("/d3/data/act/1?locale=en_US&", json = TRUE)
+blizz("/d3/data/act/1", json = TRUE)
 ```

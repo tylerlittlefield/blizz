@@ -6,42 +6,42 @@
 #' \code{json = TRUE} or as a R object (default) i.e. \code{json = FALSE}.
 #'
 #' @param endpoint An endpoint provided by Blizzards API documentation
-#' @param region API data is limited to specific regions. For example, US APIs
-#' accessed through us.battle.net only contain data from US battlegroups and
-#' realms. See the dataset \code{regions} for more info.
+#' @param locale All available API resources provide localized strings using the
+#' locale query string parameter. Supported locales vary from region to region
+#' and align with those supported on Blizzard community sites.
+#' @param namespace Namespaces in Game Data and Profile APIs that allow JSON
+#' documents to be published contextually in relation to a specific patch or
+#' point in time.
 #' @param json Logical TRUE/FALSE to return a JSON object or a R object,
 #' defaults to R.
 #' @export
-blizz <- function(endpoint, region = "us", json = FALSE) {
+blizz <- function(endpoint, locale = "en_US", namespace = NULL, json = FALSE) {
+  x <- httr::VERB(
+    verb = "GET",
+    url = glue::glue("https://us.api.blizzard.com{endpoint}"),
+    query = list(
+      namespace = namespace,
+      locale = locale,
+      access_token = Sys.getenv("BLIZZARD_AUTH_TOKEN"))
+  )
 
-  # Fetch users auth_token
-  auth_token <- Sys.getenv("BLIZZARD_AUTH_TOKEN")
+  req_url <- x[["url"]]
+  req_url <- gsub("\\=.*", "", req_url)
+  status <- x[["status_code"]]
+  content_type <- x[["headers"]][["content-type"]]
 
-  # Fetch user region
-  region <- fetch_region(region)
+  info <- glue::glue(
+    "Request: {req_url}=[*]
+     Status: {status}
+     Content-Type: {content_type}"
+  )
 
-  # Declare the components needs for the request
-  blizz_host <- region[["host"]]
-  token <- "access_token={auth_token}"
-
-  request <- glue::glue(blizz_host, endpoint, token)
-  request_censored <- glue::glue(blizz_host, endpoint, "access_token=[*]")
-
-  message("Attempting to pull data from:\n", request_censored, "\n")
+  message(info)
 
   if(json) {
-    t <- try(jsonlite::toJSON(jsonlite::fromJSON(request), pretty = TRUE), silent = TRUE)
-    if(inherits(t, "try-error")) {
-      stop("Request failed. Likely due to an improper endpoint or stale authentication token.", call. = FALSE)
-    } else {
-      jsonlite::toJSON(jsonlite::fromJSON(request), pretty = TRUE)
-    }
+    jsonlite::toJSON(httr::content(x), pretty = TRUE)
   } else {
-    t <- try(jsonlite::fromJSON(request), silent = TRUE)
-    if(inherits(t, "try-error")) {
-      stop("Request failed. Likely due to an improper endpoint or stale authentication token.", call. = FALSE)
-    } else {
-      jsonlite::fromJSON(request)
-    }
+    x <- httr::content(x)
+    jsonlite::fromJSON(jsonlite::toJSON(x))
   }
 }

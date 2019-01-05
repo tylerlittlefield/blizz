@@ -4,14 +4,18 @@
 \alias{blizz}
 \title{Extract Data from Blizzards API}
 \usage{
-blizz(endpoint, region = "us", json = FALSE)
+blizz(endpoint, locale = "en_US", namespace = NULL, json = FALSE)
 }
 \arguments{
 \item{endpoint}{An endpoint provided by Blizzards API documentation}
 
-\item{region}{API data is limited to specific regions. For example, US APIs
-accessed through us.battle.net only contain data from US battlegroups and
-realms. See the dataset \code{regions} for more info.}
+\item{locale}{All available API resources provide localized strings using the
+locale query string parameter. Supported locales vary from region to region
+and align with those supported on Blizzard community sites.}
+
+\item{namespace}{Namespaces in Game Data and Profile APIs that allow JSON
+documents to be published contextually in relation to a specific patch or
+point in time.}
 
 \item{json}{Logical TRUE/FALSE to return a JSON object or a R object,
 defaults to R.}

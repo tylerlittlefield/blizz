@@ -78,100 +78,96 @@ leading slash must be included as well:
 
 ``` r
 library(blizz)
-library(dplyr, warn.conflicts = FALSE)
-library(tidyr)
-library(janitor)
 
-# Here's one example of extracting the StarCraft II grandmaster ladder
-blizz("/sc2/ladder/grandmaster/1?") %>% 
-  .[["ladderTeams"]] %>% 
-  unnest() %>% 
-  as_tibble() %>% 
-  clean_names("snake") %>% 
-  select(display_name, clan_tag, favorite_race, mmr, wins, losses, points)
-#> Attempting to pull data from:
-#> https://us.api.blizzard.com/sc2/ladder/grandmaster/1?access_token=[*]
-#> # A tibble: 197 x 7
-#>    display_name clan_tag favorite_race   mmr  wins losses points
-#>    <chr>        <chr>    <chr>         <int> <int>  <int>  <int>
-#>  1 Chammy       Scyth    zerg           6607   108     27   2375
-#>  2 PartinG      Cl0wn    protoss        6568    42     12    976
-#>  3 PartinG      Dicboy   protoss        6564    38      8   1166
-#>  4 NoWCSForU    N0SCAM   protoss        6390   202     44   2266
-#>  5 scarlett     N0SCAM   protoss        6389    59     14   1494
-#>  6 puCK         ROOT     protoss        6264    62     21   2034
-#>  7 LiquidTLO    <NA>     zerg           6242    76     26   1772
-#>  8 Nice         <NA>     protoss        6204     1      0     73
-#>  9 DisK         PSISTM   protoss        6185    74     25   2032
-#> 10 JonSnow      PSISTM   zerg           6150    64     36   1829
-#> # ... with 187 more rows
+blizz("/d3/data/act/1")
+#> Request: https://us.api.blizzard.com/d3/data/act/1?locale=[*]
+#> Status: 200
+#> Content-Type: application/json;charset=UTF-8
+#> $slug
+#> [1] "act-i"
+#> 
+#> $number
+#> [1] 1
+#> 
+#> $name
+#> [1] "Act I"
+#> 
+#> $quests
+#>        id                    name                    slug
+#> 1   87700         The Fallen Star         the-fallen-star
+#> 2   72095      The Legacy of Cain      the-legacy-of-cain
+#> 3   72221       A Shattered Crown       a-shattered-crown
+#> 4   72061 Reign of the Black King reign-of-the-black-king
+#> 5  117779   Sword of the Stranger   sword-of-the-stranger
+#> 6   72738        The Broken Blade        the-broken-blade
+#> 7   73236     The Doom in Wortham     the-doom-in-wortham
+#> 8   72546      Trailing the Coven      trailing-the-coven
+#> 9   72801    The Imprisoned Angel    the-imprisoned-angel
+#> 10 136656  Return to New Tristram  return-to-new-tristram
 ```
-
-When making a request you pretty much need to copy and paste everything
-in-between the request URL and the access token. In the example above,
-we needed `/sc2/ladder/grandmaster/1?`.
 
 Additionally, we can print the response as JSON thanks to the
 [`jsonlite`](https://github.com/jeroen/jsonlite) package:
 
 ``` r
-blizz("/d3/data/act/1?locale=en_US&", json = TRUE)
-#> Attempting to pull data from:
-#> https://us.api.blizzard.com/d3/data/act/1?locale=en_US&access_token=[*]
+blizz("/d3/data/act/1", json = TRUE)
+#> Request: https://us.api.blizzard.com/d3/data/act/1?locale=[*]
+#> Status: 200
+#> Content-Type: application/json;charset=UTF-8
 #> {
 #>   "slug": ["act-i"],
 #>   "number": [1],
 #>   "name": ["Act I"],
 #>   "quests": [
 #>     {
-#>       "id": 87700,
-#>       "name": "The Fallen Star",
-#>       "slug": "the-fallen-star"
+#>       "id": [87700],
+#>       "name": ["The Fallen Star"],
+#>       "slug": ["the-fallen-star"]
 #>     },
 #>     {
-#>       "id": 72095,
-#>       "name": "The Legacy of Cain",
-#>       "slug": "the-legacy-of-cain"
+#>       "id": [72095],
+#>       "name": ["The Legacy of Cain"],
+#>       "slug": ["the-legacy-of-cain"]
 #>     },
 #>     {
-#>       "id": 72221,
-#>       "name": "A Shattered Crown",
-#>       "slug": "a-shattered-crown"
+#>       "id": [72221],
+#>       "name": ["A Shattered Crown"],
+#>       "slug": ["a-shattered-crown"]
 #>     },
 #>     {
-#>       "id": 72061,
-#>       "name": "Reign of the Black King",
-#>       "slug": "reign-of-the-black-king"
+#>       "id": [72061],
+#>       "name": ["Reign of the Black King"],
+#>       "slug": ["reign-of-the-black-king"]
 #>     },
 #>     {
-#>       "id": 117779,
-#>       "name": "Sword of the Stranger",
-#>       "slug": "sword-of-the-stranger"
+#>       "id": [117779],
+#>       "name": ["Sword of the Stranger"],
+#>       "slug": ["sword-of-the-stranger"]
 #>     },
 #>     {
-#>       "id": 72738,
-#>       "name": "The Broken Blade",
-#>       "slug": "the-broken-blade"
+#>       "id": [72738],
+#>       "name": ["The Broken Blade"],
+#>       "slug": ["the-broken-blade"]
 #>     },
 #>     {
-#>       "id": 73236,
-#>       "name": "The Doom in Wortham",
-#>       "slug": "the-doom-in-wortham"
+#>       "id": [73236],
+#>       "name": ["The Doom in Wortham"],
+#>       "slug": ["the-doom-in-wortham"]
 #>     },
 #>     {
-#>       "id": 72546,
-#>       "name": "Trailing the Coven",
-#>       "slug": "trailing-the-coven"
+#>       "id": [72546],
+#>       "name": ["Trailing the Coven"],
+#>       "slug": ["trailing-the-coven"]
 #>     },
 #>     {
-#>       "id": 72801,
-#>       "name": "The Imprisoned Angel",
-#>       "slug": "the-imprisoned-angel"
+#>       "id": [72801],
+#>       "name": ["The Imprisoned Angel"],
+#>       "slug": ["the-imprisoned-angel"]
 #>     },
 #>     {
-#>       "id": 136656,
-#>       "name": "Return to New Tristram",
-#>       "slug": "return-to-new-tristram"
+#>       "id": [136656],
+#>       "name": ["Return to New Tristram"],
+#>       "slug": ["return-to-new-tristram"]
 #>     }
 #>   ]
 #> }

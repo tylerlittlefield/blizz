@@ -17,24 +17,7 @@ blizz_auth <- function(id, secret, refresh = FALSE, install = TRUE) {
     )
 
     access_token <- credentials[["token"]]
-
-    Sys.setenv(BLIZZARD_AUTH_TOKEN = access_token) # to prevent having to restart R
-
-    home <- Sys.getenv("HOME")
-    renv <- file.path(home, ".Renviron")
-
-    old_renv <- utils::read.table(renv, stringsAsFactors = FALSE)
-    mod_renv <- old_renv[-grep("BLIZZARD_AUTH_TOKEN", old_renv[[1]]), ]
-    new_renv <- c(mod_renv, glue::glue("BLIZZARD_AUTH_TOKEN={access_token}"))
-
-    utils::write.table(
-      new_renv,
-      renv,
-      quote = FALSE,
-      sep = "\n",
-      col.names = FALSE,
-      row.names = FALSE
-    )
+    refresh_token(access_token)
   } else if (install) {
     if (missing(id) & missing(secret)) {
       stop("Client ID and Secret required to authenticate.")
@@ -82,10 +65,7 @@ blizz_auth <- function(id, secret, refresh = FALSE, install = TRUE) {
         row.names = FALSE
       )
     }
-  }
-  # At the end, if the user doesn't want to install, we just set the
-  # environment variable for interactive use.
-  else {
+  } else {
     Sys.setenv(BLIZZARD_AUTH_TOKEN = access_token)
   }
 }

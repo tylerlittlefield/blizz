@@ -15,30 +15,25 @@ authenticate <- function(id, secret) {
   access_token <- resp_contents[["access_token"]]
 
   list(reponse = resp, contents = resp_contents, token = access_token)
-
 }
 
-refresh_auth <- function(id = NULL, secret = NULL) {
-  if(is.null(id) & is.null(secret)) {
-    id <- Sys.getenv("BLIZZARD_CLIENT_ID")
-    secret <- Sys.getenv("BLIZZARD_CLIENT_SECRET")
-    curl_req <- glue::glue("curl -u {id}:{secret} -d grant_type=client_credentials https://us.battle.net/oauth/token")
-    curl_resp <- invisible(system(curl_req, intern = TRUE))
-    TOKEN <- jsonlite::fromJSON(curl_resp)[["access_token"]]
-    AUTH_TOKEN <- glue::glue("BLIZZARD_AUTH_TOKEN='{TOKEN}'")
-  } else {
-    curl_req <- glue::glue("curl -u {id}:{secret} -d grant_type=client_credentials https://us.battle.net/oauth/token")
-    curl_resp <- invisible(system(curl_req, intern = TRUE))
-    TOKEN <- jsonlite::fromJSON(curl_resp)[["access_token"]]
-    AUTH_TOKEN <- glue::glue("BLIZZARD_AUTH_TOKEN='{TOKEN}'")
-  }
-}
+refresh_token <- function(access_token) {
+  Sys.setenv(BLIZZARD_AUTH_TOKEN = access_token) # to prevent having to restart R
+  home <- Sys.getenv("HOME")
+  renv <- file.path(home, ".Renviron")
 
-fetch_creds <- function() {
-  id <- Sys.getenv("BLIZZARD_CLIENT_ID")
-  secret <- Sys.getenv("BLIZZARD_CLIENT_SECRET")
-  token <- Sys.getenv("BLIZZARD_AUTH_TOKEN")
-  list(id = id, secret = secret, token = token)
+  old_renv <- utils::read.table(renv, stringsAsFactors = FALSE)
+  mod_renv <- old_renv[-grep("BLIZZARD_AUTH_TOKEN", old_renv[[1]]), ]
+  new_renv <- c(mod_renv, glue::glue("BLIZZARD_AUTH_TOKEN={access_token}"))
+
+  utils::write.table(
+    new_renv,
+    renv,
+    quote = FALSE,
+    sep = "\n",
+    col.names = FALSE,
+    row.names = FALSE
+  )
 }
 
 fetch_region <- function(region) {
