@@ -56,6 +56,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="articles/recipes.html">Recipes</a>
+    </li>
+    <li>
       <a href="articles/user-authentication.html">User Authentication</a>
     </li>
   </ul>
@@ -114,7 +117,7 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(blizz)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="reference/blizz.html">blizz</a></span>(<span class="st">"/d3/data/act/1"</span>)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; ✔ Request: https://us.api.blizzard.com/d3/data/act/1?locale</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; ✔ Request: https://us.api.blizzard.com/d3/data/act/1</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; ✔ Status: 200</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; ✔ Content-Type: application/json;charset=UTF-8</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; $slug</span></a>
@@ -140,7 +143,7 @@
 <a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; 10 136656  Return to New Tristram  return-to-new-tristram</span></a></code></pre></div>
 <p>Additionally, we can print the response as JSON thanks to the <a href="https://github.com/jeroen/jsonlite"><code>jsonlite</code></a> package:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/blizz.html">blizz</a></span>(<span class="st">"/d3/data/act/1"</span>, <span class="dt">json =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; ✔ Request: https://us.api.blizzard.com/d3/data/act/1?locale</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; ✔ Request: https://us.api.blizzard.com/d3/data/act/1</span></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; ✔ Status: 200</span></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; ✔ Content-Type: application/json;charset=UTF-8</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; {</span></a>
