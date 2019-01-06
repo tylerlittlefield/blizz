@@ -29,8 +29,5 @@ Suggests:
     covr,
     testthat,
     knitr,
-    rmarkdown,
-    purrr,
-    dplyr,
-    tidyr
+    rmarkdown
 VignetteBuilder: knitr

@@ -3,5 +3,4 @@ pkgdown: 1.2.0
 pkgdown_sha: ~
 articles:
   auth: auth.html
-  recipes: recipes.html
 
