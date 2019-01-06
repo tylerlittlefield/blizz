@@ -38,7 +38,7 @@ refresh_token <- function(access_token) {
 
 print_info <- function(request) {
   req_url <- request[["url"]]
-  req_url <- gsub("\\=.*", "", req_url)
+  req_url <- gsub("\\?.*", "", req_url)
   status <- request[["status_code"]]
   content_type <- request[["headers"]][["content-type"]]
 
@@ -52,7 +52,7 @@ print_info <- function(request) {
       glue::glue(
         crayon::green(cli::symbol$tick), x, "\n",
         crayon::green(cli::symbol$tick), y, "\n",
-        crayon::green(cli::symbol$tick), z, "\n",
+        crayon::green(cli::symbol$tick), z, "\n\n"
       )
     )
   } else {
@@ -60,7 +60,7 @@ print_info <- function(request) {
       glue::glue(
         crayon::red(cli::symbol$cross), x, "\n",
         crayon::red(cli::symbol$cross), y, "\n",
-        crayon::yellow(cli::symbol$bullet), z, "\n",
+        crayon::yellow(cli::symbol$bullet), z, "\n\n"
       )
     )
   }
