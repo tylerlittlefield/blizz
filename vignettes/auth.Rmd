@@ -1,8 +1,8 @@
 ---
-title: "User Authentication"
+title: "Authentication"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{User Authentication}
+  %\VignetteIndexEntry{Authentication}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
