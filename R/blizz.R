@@ -22,7 +22,8 @@ blizz <- function(endpoint, locale = "en_US", namespace = NULL, json = FALSE) {
     query = list(
       namespace = namespace,
       locale = locale,
-      access_token = Sys.getenv("BLIZZARD_AUTH_TOKEN"))
+      access_token = Sys.getenv("BLIZZARD_AUTH_TOKEN")
+    )
   )
 
   print_info(x)         # get request info: url, status code, content type
