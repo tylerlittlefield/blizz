@@ -1,4 +1,4 @@
-#' Authenticate your Blizzard API credentials
+#' Authenticate Blizzard API
 #' @description The function will install the Client ID, Client Secret, and
 #' Authentication Token to the \code{.Renviron} file for repeated use. However,
 #' tokens expire after 24 hours so after the initial install, running

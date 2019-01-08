@@ -1,4 +1,4 @@
-#' Blizzards API Regions.
+#' Blizzard API Regions.
 #'
 #' A dataset containing all available regions, hosts, and locales. API data is
 #' limited to specific regions. For example, US APIs accessed through

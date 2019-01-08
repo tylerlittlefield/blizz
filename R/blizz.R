@@ -1,6 +1,6 @@
-#' Extract Data from Blizzards API
-#' @description Main function for interactive with Blizzards API. At the bare
-#' minimum, you must provide the endpoint (see: Blizzards API docs). You may
+#' Extract Blizzard Game Data
+#' @description Main function to grab data from Blizzard's API. At the bare
+#' minimum, you must provide the endpoint (see: Blizzard's API docs). You may
 #' also suggest a valid region and locale. By default, \code{blizz} defaults to
 #' the US. Finally, you may view the data as a JSON object i.e.
 #' \code{json = TRUE} or as a R object (default) i.e. \code{json = FALSE}.
@@ -26,7 +26,7 @@ blizz <- function(endpoint, locale = "en_US", namespace = NULL, json = FALSE) {
     )
   )
 
-  print_info(x)         # get request info: url, status code, content type
+  print_info(x)         # print request info: url, status code, content type
   x <- httr::content(x) # grab the request content
 
   if(json) {

@@ -88,9 +88,9 @@
     
     
 <p>In this vignette, we go over how to authenticate so that we can start using <code>blizz</code>.</p>
-<div id="step-1-create-an-account" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-1-create-an-account" class="anchor"></a>Step 1: Create an account</h3>
+<div id="step-1-create-an-account" class="section level2">
+<h2 class="hasAnchor">
+<a href="#step-1-create-an-account" class="anchor"></a>Step 1: Create an account</h2>
 <p>I’m going to gloss over this part because I already have an account. Go to <a href="https://develop.battle.net/" class="uri">https://develop.battle.net/</a> and create an account. You will also need to download Blizzard’s authenticator app, the <a href="https://itunes.apple.com/us/app/blizzard-authenticator/id306862897?mt=8">iOS</a> version and the <a href="https://play.google.com/store/apps/details?id=com.blizzard.bma&amp;hl=en_US">Android</a> version are available to download.</p>
 <p>Once you’ve:</p>
 <ol style="list-style-type: decimal">
@@ -100,9 +100,9 @@
 </ol>
 <p>You can login to <a href="https://develop.battle.net/" class="uri">https://develop.battle.net/</a>. A notification on the authenticator app will prompt you to approve the login and you’re good to go. You’re ready to proceed to the next step and create a client.</p>
 </div>
-<div id="step-2-create-a-client" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-2-create-a-client" class="anchor"></a>Step 2: Create a client</h3>
+<div id="step-2-create-a-client" class="section level2">
+<h2 class="hasAnchor">
+<a href="#step-2-create-a-client" class="anchor"></a>Step 2: Create a client</h2>
 <p>Next, we need to create a client. All we want from the client are:</p>
 <ol style="list-style-type: decimal">
 <li>A <strong>Client ID</strong>
@@ -117,19 +117,27 @@
 <p>After the client is created, you’ll see the <strong>ID</strong> and <strong>Secret</strong>. The screenshot is just a test one I’m making for this vignette, the last 6 or so characters were cut off so yours should look a bit longer.</p>
 <p><img src="images/step-2-3.png" width="1464"></p>
 </div>
-<div id="step-3" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-3" class="anchor"></a>Step 3</h3>
-<p>Finally, we run the following command in R:</p>
+<div id="step-3-authenticate" class="section level2">
+<h2 class="hasAnchor">
+<a href="#step-3-authenticate" class="anchor"></a>Step 3: Authenticate</h2>
+<p>Finally, we run the following command in R, replacing “client_id” and “client_secret” with your own id and secret:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(blizz)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="../reference/blizz_auth.html">blizz_auth</a></span>(client_id, client_secret)</a></code></pre></div>
-<p>From this point you should be able to make requests. Access tokens expire after 24 hours so you will eventually need to run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/blizz_auth.html">blizz_auth</a></span>(<span class="dt">refresh =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>From this point you should be able to make requests.</p>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#step-1-create-an-account">Step 1: Create an account</a></li>
+      <li><a href="#step-2-create-a-client">Step 2: Create a client</a></li>
+      <li><a href="#step-3-authenticate">Step 3: Authenticate</a></li>
+      </ul>
+</div>
       </div>
 
 </div>

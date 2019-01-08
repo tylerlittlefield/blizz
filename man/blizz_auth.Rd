@@ -2,7 +2,7 @@
 % Please edit documentation in R/blizz_auth.R
 \name{blizz_auth}
 \alias{blizz_auth}
-\title{Authenticate your Blizzard API credentials}
+\title{Authenticate Blizzard API}
 \usage{
 blizz_auth(id, secret, refresh = FALSE, install = TRUE)
 }

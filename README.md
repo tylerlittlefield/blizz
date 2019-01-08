@@ -62,8 +62,7 @@ blizz_auth(refresh = TRUE)
 
 This will remove the expired token from your `.Renviron` and add the
 fresh token to it. More info on how to get started can be found in
-[**this**](https://blizz.netlify.com/articles/user-authentication.html)
-vignette.
+[**this**](https://blizz.netlify.com/articles/auth.html) vignette.
 
 ## Example
 
