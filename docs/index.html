@@ -103,7 +103,7 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">BLIZZARD_CLIENT_ID=<span class="st">'your ID'</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">BLIZZARD_CLIENT_SECRET=<span class="st">'your secret'</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">BLIZZARD_AUTH_TOKEN=<span class="st">'your token'</span></a></code></pre></div>
-<p>Note: Blizzard’s authentication tokens expire after 24 hours. To refresh the authentication token run the following:</p>
+<p>Note: Blizzard’s authentication tokens expire after 24 hours. To avoid having to refresh the token everyday, <code>blizz</code> runs the following command everytime the library is loaded:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/blizz_auth.html">blizz_auth</a></span>(<span class="dt">refresh =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>This will remove the expired token from your <code>.Renviron</code> and add the fresh token to it. More info on how to get started can be found in <a href="https://blizz.netlify.com/articles/user-authentication.html"><strong>this</strong></a> vignette.</p>
 </div>

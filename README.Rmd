@@ -50,7 +50,7 @@ BLIZZARD_CLIENT_SECRET='your secret'
 BLIZZARD_AUTH_TOKEN='your token'
 ```
 
-Note: Blizzard's authentication tokens expire after 24 hours. To refresh the authentication token run the following:
+Note: Blizzard's authentication tokens expire after 24 hours. To avoid having to refresh the token everyday, `blizz` runs the following command everytime the library is loaded:
 
 ```r
 blizz_auth(refresh = TRUE)
