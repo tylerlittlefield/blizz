@@ -130,7 +130,8 @@ the US. Finally, you may view the data as a JSON object i.e.
     
     </div>
 
-    <pre class="usage"><span class='fu'>blizz</span>(<span class='no'>endpoint</span>, <span class='kw'>locale</span> <span class='kw'>=</span> <span class='st'>"en_US"</span>, <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>json</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>blizz</span>(<span class='no'>endpoint</span>, <span class='kw'>locale</span> <span class='kw'>=</span> <span class='st'>"en_US"</span>, <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='st'>"dynamic-us"</span>,
+  <span class='kw'>json</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,13 +144,14 @@ the US. Finally, you may view the data as a JSON object i.e.
       <th>locale</th>
       <td><p>All available API resources provide localized strings using the
 locale query string parameter. Supported locales vary from region to region
-and align with those supported on Blizzard community sites.</p></td>
+and align with those supported on Blizzard community sites. Defaults to
+<code>"en_US"</code>.</p></td>
     </tr>
     <tr>
       <th>namespace</th>
       <td><p>Namespaces in Game Data and Profile APIs that allow JSON
 documents to be published contextually in relation to a specific patch or
-point in time.</p></td>
+point in time. Defaults to <code>"dynamic-us"</code>.</p></td>
     </tr>
     <tr>
       <th>json</th>

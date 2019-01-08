@@ -8,14 +8,15 @@
 #' @param endpoint An endpoint provided by Blizzards API documentation
 #' @param locale All available API resources provide localized strings using the
 #' locale query string parameter. Supported locales vary from region to region
-#' and align with those supported on Blizzard community sites.
+#' and align with those supported on Blizzard community sites. Defaults to
+#' \code{"en_US"}.
 #' @param namespace Namespaces in Game Data and Profile APIs that allow JSON
 #' documents to be published contextually in relation to a specific patch or
-#' point in time.
+#' point in time. Defaults to \code{"dynamic-us"}.
 #' @param json Logical TRUE/FALSE to return a JSON object or a R object,
 #' defaults to R.
 #' @export
-blizz <- function(endpoint, locale = "en_US", namespace = NULL, json = FALSE) {
+blizz <- function(endpoint, locale = "en_US", namespace = "dynamic-us", json = FALSE) {
   x <- httr::VERB(
     verb = "GET",
     url = glue::glue("https://us.api.blizzard.com{endpoint}"),
