@@ -4,8 +4,7 @@
 \alias{blizz}
 \title{Extract Blizzard Game Data}
 \usage{
-blizz(endpoint, locale = "en_US", namespace = "dynamic-us",
-  json = FALSE)
+blizz(endpoint, locale = "en_US", namespace = NULL, json = FALSE)
 }
 \arguments{
 \item{endpoint}{An endpoint provided by Blizzards API documentation}
@@ -17,7 +16,7 @@ and align with those supported on Blizzard community sites. Defaults to
 
 \item{namespace}{Namespaces in Game Data and Profile APIs that allow JSON
 documents to be published contextually in relation to a specific patch or
-point in time. Defaults to \code{"dynamic-us"}.}
+point in time. Defaults to \code{NULL}.}
 
 \item{json}{Logical TRUE/FALSE to return a JSON object or a R object,
 defaults to R.}
