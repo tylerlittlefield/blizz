@@ -24,7 +24,7 @@ defaults to R.}
 \description{
 Main function to grab data from Blizzard's API. At the bare
 minimum, you must provide the endpoint (see: Blizzard's API docs). You may
-also suggest a valid region and locale. By default, \code{blizz} defaults to
-the US. Finally, you may view the data as a JSON object i.e.
-\code{json = TRUE} or as a R object (default) i.e. \code{json = FALSE}.
+also provide a valid locale and namespace. Finally, you may view the data as
+a JSON object i.e. \code{blizz("/some/endpoint", json = TRUE)} or as a R
+object (default) i.e. \code{blizz("/some/endpoint")}.
 }
