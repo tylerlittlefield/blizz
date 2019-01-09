@@ -2,12 +2,11 @@
 
 # Download script file from GitHub
 init:
-  - Rscript -e 'home <- Sys.getenv("HOME");renv <- file.path(home, ".Renviron");file.create(renv)'
-
   ps: |
         $ErrorActionPreference = "Stop"
         Invoke-WebRequest http://raw.github.com/krlmlr/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
         Import-Module '..\appveyor-tool.ps1'
+  - Rscript -e 'home <- Sys.getenv("HOME");renv <- file.path(home, ".Renviron");file.create(renv)'
 
 install:
   ps: Bootstrap
