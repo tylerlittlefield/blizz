@@ -15,8 +15,10 @@
 #' point in time. Defaults to \code{NULL}.
 #' @param json Logical TRUE/FALSE to return a JSON object or a R object,
 #' defaults to R.
+#' @param quiet If \code{FALSE}, request information will not print. Defaults to
+#' \code{TRUE}.
 #' @export
-blizz <- function(endpoint, locale = "en_US", namespace = NULL, json = FALSE) {
+blizz <- function(endpoint, locale = "en_US", namespace = NULL, json = FALSE, quiet = FALSE) {
   x <- httr::VERB(
     verb = "GET",
     url = glue::glue("https://us.api.blizzard.com{endpoint}"),
@@ -27,7 +29,9 @@ blizz <- function(endpoint, locale = "en_US", namespace = NULL, json = FALSE) {
     )
   )
 
-  print_info(x)         # print request info: url, status code, content type
+  if(!quiet)
+    print_info(x)
+
   x <- httr::content(x) # grab the request content
 
   if(json) {
