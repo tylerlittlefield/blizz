@@ -34,10 +34,11 @@ devtools::install_github("tyluRp/blizz")
 
 ## Additional Setup
 
-You need to create a developer account at Blizzard's [**dev portal**](https://develop.battle.net/). Once you've created an account, a client needs to be made. Creating a client will produce a **Client ID** and **Client Secret**. With these credentials you can simply run:
+You need to create a developer account at Blizzard's [**dev portal**](https://develop.battle.net/). Once you've created an account, a client needs to be made. Creating a client will produce a **Client ID** and **Client Secret**. With these credentials you can run:
 
 ```r
-blizz_auth("your_client_id", "your_client_secret")
+# replace ID/SECRET with your own
+blizz_auth("ID", "SECRET")
 ```
 
 After this, you're all set. 
