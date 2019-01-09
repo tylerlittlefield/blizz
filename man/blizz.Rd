@@ -4,7 +4,8 @@
 \alias{blizz}
 \title{Extract Blizzard Game Data}
 \usage{
-blizz(endpoint, locale = "en_US", namespace = NULL, json = FALSE)
+blizz(endpoint, locale = "en_US", namespace = NULL, json = FALSE,
+  quiet = FALSE)
 }
 \arguments{
 \item{endpoint}{An endpoint provided by Blizzards API documentation}
@@ -20,6 +21,9 @@ point in time. Defaults to \code{NULL}.}
 
 \item{json}{Logical TRUE/FALSE to return a JSON object or a R object,
 defaults to R.}
+
+\item{quiet}{If \code{FALSE}, request information will not print. Defaults to
+\code{TRUE}.}
 }
 \description{
 Main function to grab data from Blizzard's API. At the bare
