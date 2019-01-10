@@ -16,7 +16,13 @@
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-106175087-3"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106175087-3');
+</script>
 </head>
 <body>
     <div class="container template-home">
@@ -94,8 +100,9 @@
 <div id="additional-setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#additional-setup" class="anchor"></a>Additional Setup</h2>
-<p>You need to create a developer account at Blizzard’s <a href="https://develop.battle.net/"><strong>dev portal</strong></a>. Once you’ve created an account, a client needs to be made. Creating a client will produce a <strong>Client ID</strong> and <strong>Client Secret</strong>. With these credentials you can simply run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/blizz_auth.html">blizz_auth</a></span>(<span class="st">"your_client_id"</span>, <span class="st">"your_client_secret"</span>)</a></code></pre></div>
+<p>You need to create a developer account at Blizzard’s <a href="https://develop.battle.net/"><strong>dev portal</strong></a>. Once you’ve created an account, a client needs to be made. Creating a client will produce a <strong>Client ID</strong> and <strong>Client Secret</strong>. With these credentials you can run:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># replace ID/SECRET with your own</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="reference/blizz_auth.html">blizz_auth</a></span>(<span class="st">"ID"</span>, <span class="st">"SECRET"</span>)</a></code></pre></div>
 <p>After this, you’re all set.</p>
 <p>If you want to avoid using <code><a href="reference/blizz_auth.html">blizz_auth()</a></code>, you can obtain the Client ID, Secret, and Token by following the <a href="https://develop.battle.net/documentation/guides/getting-started">docs</a>. Then edit the <code>.Renviron</code> file manually and supply the credentials like so:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">BLIZZARD_CLIENT_ID=<span class="st">'your ID'</span></a>
