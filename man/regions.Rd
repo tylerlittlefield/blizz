@@ -3,7 +3,7 @@
 \docType{data}
 \name{regions}
 \alias{regions}
-\title{Blizzard API Regions.}
+\title{Blizzard API Regions}
 \format{A data frame with 13 rows and 3 variables:
 \describe{
   \item{region}{The region: us, eu, kr, tw, or cn}

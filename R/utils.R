@@ -64,4 +64,3 @@ print_info <- function(request) {
     )
   }
 }
-

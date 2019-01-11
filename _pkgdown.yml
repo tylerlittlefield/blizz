@@ -2,3 +2,13 @@ destination: docs
 template:
   params:
     ganalytics: UA-106175087-3
+
+reference:
+- title: Functions
+  contents:
+  - blizz
+  - blizz_auth
+- title: Datasets
+  contents:
+  - d3acts
+  - regions

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Blizzard API Regions — regions • blizz</title>
+<title>Diablo 3 Acts — d3acts • blizz</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,17 +30,9 @@
 
 
 
-<meta property="og:title" content="Blizzard API Regions — regions" />
+<meta property="og:title" content="Diablo 3 Acts — d3acts" />
 
-<meta property="og:description" content="A dataset containing all available regions, hosts, and locales. API data is
-limited to specific regions. For example, US APIs accessed through
-us.battle.net only contain data from US battlegroups and realms. Locale
-support is limited to locations supported on Blizzard community game sites.
-Game information is different from region to region. For example, a user
-that has both US and EU WoW accounts has different characters, achievements,
-and other information in each region. Likewise, a D3 user who has a single
-license for D3 on their account has a different character list for each
-region in which the game operates." />
+<meta property="og:description" content="A dataset containing all available Acts in the Diablo 3 storyline." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -129,38 +121,33 @@ region in which the game operates." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Blizzard API Regions</h1>
+    <h1>Diablo 3 Acts</h1>
     <small class="dont-index">Source: <a href='https://github.com/tyluRp/blizz/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>regions.Rd</code></div>
+    <div class="hidden name"><code>d3acts.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A dataset containing all available regions, hosts, and locales. API data is
-limited to specific regions. For example, US APIs accessed through
-us.battle.net only contain data from US battlegroups and realms. Locale
-support is limited to locations supported on Blizzard community game sites.
-Game information is different from region to region. For example, a user
-that has both US and EU WoW accounts has different characters, achievements,
-and other information in each region. Likewise, a D3 user who has a single
-license for D3 on their account has a different character list for each
-region in which the game operates.</p>
+    <p>A dataset containing all available Acts in the Diablo 3 storyline.</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>regions</span></pre>
+    <pre class="usage"><span class='no'>d3acts</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 13 rows and 3 variables:</p><dl class='dl-horizontal'>
-  <dt>region</dt><dd><p>The region: us, eu, kr, tw, or cn</p></dd>
-  <dt>host</dt><dd><p>The host for example, https://us.api.blizzard.com/</p></dd>
-  <dt>locale</dt><dd><p>The localization, see the <code>regions</code> dataset</p></dd>
+    <p>A data frame with 39 rows and 6 variables:</p><dl class='dl-horizontal'>
+  <dt>id</dt><dd><p>Act ID: <em>87700, 72095, ...</em></p></dd>
+  <dt>act</dt><dd><p>Act: <em>Act I, Act II, ...</em></p></dd>
+  <dt>act_slug</dt><dd><p>Act Slug: <em>act-ii, act-ii, ...</em></p></dd>
+  <dt>number</dt><dd><p>Act Number: <em>1, 2, ...</em></p></dd>
+  <dt>name</dt><dd><p>Act Name: <em>The Fallen Star, The Legacy of Cain, ...</em></p></dd>
+  <dt>name_slug</dt><dd><p>Act Name Slug: <em>the-fallen-star, the-legacy-of-cain, ...</em></p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://develop.battle.net/documentation/guides/regionality-partitions-and-localization'>https://develop.battle.net/documentation/guides/regionality-partitions-and-localization</a></p>
+    <p><a href='https://develop.battle.net/documentation/api-reference'>https://develop.battle.net/documentation/api-reference</a></p>
     
 
   </div>

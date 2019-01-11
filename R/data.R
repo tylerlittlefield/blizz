@@ -1,4 +1,4 @@
-#' Blizzard API Regions.
+#' Blizzard API Regions
 #'
 #' A dataset containing all available regions, hosts, and locales. API data is
 #' limited to specific regions. For example, US APIs accessed through
@@ -18,3 +18,19 @@
 #' }
 #' @source \url{https://develop.battle.net/documentation/guides/regionality-partitions-and-localization}
 "regions"
+
+#' Diablo 3 Acts
+#'
+#' A dataset containing all available Acts in the Diablo 3 storyline.
+#'
+#' @format A data frame with 39 rows and 6 variables:
+#' \describe{
+#'   \item{id}{Act ID: \emph{87700, 72095, ...}}
+#'   \item{act}{Act: \emph{Act I, Act II, ...}}
+#'   \item{act_slug}{Act Slug: \emph{act-ii, act-ii, ...}}
+#'   \item{number}{Act Number: \emph{1, 2, ...}}
+#'   \item{name}{Act Name: \emph{The Fallen Star, The Legacy of Cain, ...}}
+#'   \item{name_slug}{Act Name Slug: \emph{the-fallen-star, the-legacy-of-cain, ...}}
+#' }
+#' @source \url{https://develop.battle.net/documentation/api-reference}
+"d3acts"
