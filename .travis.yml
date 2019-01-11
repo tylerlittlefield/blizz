@@ -12,6 +12,7 @@ r:
 
 script:
     # If running from an R or shell file
+    - Rscript -e 'devtools::install_github("tylurp/blizz")'
     - Rscript -e 'blizz::blizz_auth(id = Sys.getenv("BLIZZARD_CLIENT_ID"), secret = Sys.getenv("BLIZZARD_CLIENT_SECRET"), install = TRUE)'
 
 after_success:
