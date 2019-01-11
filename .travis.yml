@@ -12,7 +12,7 @@ r:
 
 script:
     # If running from an R or shell file
-    - Rscript R/travis.R
+    - Rscript -e 'blizz::blizz_auth(id = Sys.getenv("BLIZZARD_CLIENT_ID"), secret = Sys.getenv("BLIZZARD_CLIENT_SECRET"), install = TRUE)'
 
 after_success:
   - Rscript -e 'covr::codecov()'
