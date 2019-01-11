@@ -10,9 +10,5 @@ r:
 - release
 - devel
 
-script:
-    # If running from an R or shell file
-    - Rscript -e 'resp <- httr::VERB(verb = "POST",url = "https://us.battle.net/oauth/token",httr::authenticate(user = Sys.getenv("BLIZZARD_CLIENT_ID"),password = Sys.getenv("BLIZZARD_CLIENT_SECRET")),body = list(grant_type = "client_credentials")); resp_contents <- httr::content(resp);access_token <- resp_contents[["access_token"]];Sys.setenv(BLIZZARD_AUTH_TOKEN = access_token)'
-
 after_success:
   - Rscript -e 'covr::codecov()'
