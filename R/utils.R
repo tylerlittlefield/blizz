@@ -46,8 +46,8 @@ print_info <- function(request) {
   y <- glue::glue(crayon::bold(" Status: "), status)
   z <- glue::glue(crayon::bold(" Content-Type: "), content_type)
 
-  # TODO: Add more status codes to 200, there's many more that aren't failures
-  if(status %in% c(200L)) {
+  is_success <- !httr::http_error(request)
+  if(is_success) {
     cat(
       glue::glue(
         crayon::green(cli::symbol$tick), x, "\n",
@@ -59,8 +59,7 @@ print_info <- function(request) {
     cat(
       glue::glue(
         crayon::red(cli::symbol$cross), x, "\n",
-        crayon::red(cli::symbol$cross), y, "\n",
-        crayon::yellow(cli::symbol$bullet), z, "\n\n"
+        crayon::red(cli::symbol$cross), y, "\n\n",
       )
     )
   }
