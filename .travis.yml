@@ -10,5 +10,9 @@ r:
 - release
 - devel
 
+script:
+    # If running from an R or shell file
+    - Rscript test.R
+
 after_success:
   - Rscript -e 'covr::codecov()'
