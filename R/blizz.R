@@ -32,6 +32,9 @@ blizz <- function(endpoint, locale = "en_US", namespace = NULL, json = FALSE, qu
   if(!quiet)
     print_info(x)
 
+  if(httr::http_error(x))
+    stop(httr::http_status(x)[["message"]])
+
   x <- httr::content(x) # grab the request content
 
   if(json) {
