@@ -15,6 +15,8 @@ coverage](https://codecov.io/gh/tyluRp/blizz/branch/master/graph/badge.svg)](htt
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
+<img src="man/figures/Nagrand_Concept_Art_Peter_Lee_1.jpg" width="100%" />
+
 Minimalistic client to access [Blizzards
 API](https://develop.battle.net/).
 
@@ -166,3 +168,10 @@ blizz("/d3/data/act/1", json = TRUE)
 #>   ]
 #> }
 ```
+
+## Acknowledgements
+
+  - [Blizzard](https://develop.battle.net/): API
+  - [Peter Lee](https://www.artstation.com/peterconcept): Nagrand
+    concept art
+  - [Jeroen Ooms](https://github.com/jeroen): `jsonlite` package

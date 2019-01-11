@@ -21,6 +21,11 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
+```{r, echo=FALSE}
+knitr::include_graphics("man/figures/Nagrand_Concept_Art_Peter_Lee_1.jpg")
+```
+
+
 Minimalistic client to access [Blizzards API](https://develop.battle.net/).
 
 ## Installation
@@ -74,3 +79,9 @@ Additionally, we can print the response as JSON thanks to the [`jsonlite`](https
 ```{r example2}
 blizz("/d3/data/act/1", json = TRUE)
 ```
+
+## Acknowledgements
+
+* [Blizzard](https://develop.battle.net/): API
+* [Peter Lee](https://www.artstation.com/peterconcept): Nagrand concept art
+* [Jeroen Ooms](https://github.com/jeroen): `jsonlite` package
