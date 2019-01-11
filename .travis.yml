@@ -12,7 +12,7 @@ r:
 
 script:
     # If running from an R or shell file
-    - Rscript travis.R
+    - Rscript R/travis.R
 
 after_success:
   - Rscript -e 'covr::codecov()'
