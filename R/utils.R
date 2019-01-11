@@ -22,14 +22,6 @@ refresh_token <- function(access_token) {
   home <- Sys.getenv("HOME")
   renv <- file.path(home, ".Renviron")
 
-  if (file.exists(renv)) {
-    # Backup original .Renviron before doing anything else here.
-    file.copy(renv, file.path(home, ".Renviron_backup"), overwrite = TRUE)
-  }
-  if (!file.exists(renv)) {
-    file.create(renv)
-  }
-
   old_renv <- utils::read.table(renv, stringsAsFactors = FALSE)
   mod_renv <- old_renv[-grep("BLIZZARD_AUTH_TOKEN", old_renv[[1]]), ]
   new_renv <- c(mod_renv, glue::glue("BLIZZARD_AUTH_TOKEN={access_token}"))
