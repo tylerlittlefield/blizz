@@ -175,3 +175,4 @@ blizz("/d3/data/act/1", json = TRUE)
   - [Peter Lee](https://www.artstation.com/peterconcept): Nagrand
     concept art
   - [Jeroen Ooms](https://github.com/jeroen): `jsonlite` package
+  - [r-lib](https://github.com/r-lib): `httr` package
