@@ -41,11 +41,14 @@ blizz_auth <- function(id, secret, refresh = FALSE, install = TRUE) {
       # Backup original .Renviron before doing anything else here.
       file.copy(renv, file.path(home, ".Renviron_backup"))
     }
+
     if (!file.exists(renv)) {
       file.create(renv)
     }
 
-    old_renv <- utils::read.table(renv, stringsAsFactors = FALSE)
+    old_renv <- tryCatch({
+      utils::read.table(renv, stringsAsFactors = FALSE)
+    }, error = function(e) NULL)
 
     if (length(old_renv[grep("BLIZZARD", old_renv[[1]]), ]) > 0) {
       stop("Blizzard crentials detected in `.Renviron`. No need to install. Perhaps you meant to refresh the token, i.e. `blizz_auth(refresh = TRUE)`?")

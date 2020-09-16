@@ -4,12 +4,14 @@
 \name{regions}
 \alias{regions}
 \title{Blizzard API Regions}
-\format{A data frame with 13 rows and 3 variables:
+\format{
+A data frame with 13 rows and 3 variables:
 \describe{
   \item{region}{The region: us, eu, kr, tw, or cn}
   \item{host}{The host for example, https://us.api.blizzard.com/}
   \item{locale}{The localization, see the \code{regions} dataset}
-}}
+}
+}
 \source{
 \url{https://develop.battle.net/documentation/guides/regionality-partitions-and-localization}
 }

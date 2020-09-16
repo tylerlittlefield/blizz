@@ -4,7 +4,8 @@
 \name{d3acts}
 \alias{d3acts}
 \title{Diablo 3 Acts}
-\format{A data frame with 39 rows and 6 variables:
+\format{
+A data frame with 39 rows and 6 variables:
 \describe{
   \item{id}{Act ID: \emph{87700, 72095, ...}}
   \item{act}{Act: \emph{Act I, Act II, ...}}
@@ -12,7 +13,8 @@
   \item{number}{Act Number: \emph{1, 2, ...}}
   \item{name}{Act Name: \emph{The Fallen Star, The Legacy of Cain, ...}}
   \item{name_slug}{Act Name Slug: \emph{the-fallen-star, the-legacy-of-cain, ...}}
-}}
+}
+}
 \source{
 \url{https://develop.battle.net/documentation/api-reference}
 }

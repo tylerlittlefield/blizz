@@ -4,8 +4,13 @@
 \alias{blizz}
 \title{Extract Blizzard Game Data}
 \usage{
-blizz(endpoint, locale = "en_US", namespace = NULL, json = FALSE,
-  quiet = FALSE)
+blizz(
+  endpoint,
+  locale = "en_US",
+  namespace = NULL,
+  json = FALSE,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{endpoint}{An endpoint provided by Blizzards API documentation}
